@@ -6,7 +6,4 @@ class ExampleItemModel extends ExampleItem {
   factory ExampleItemModel.fromJson(Map<String, dynamic> json) {
     return ExampleItemModel(value: json["bank_id"]);
   }
-  factory ExampleItemModel.fromJsonRecommendedItems(Map<String, dynamic> json) {
-    return ExampleItemModel(value: json['value']);
-  }
 }
