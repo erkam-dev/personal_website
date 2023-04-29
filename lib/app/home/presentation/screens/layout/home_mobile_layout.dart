@@ -16,24 +16,6 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          ValueListenableBuilder(
-            valueListenable: themeMode,
-            builder: (context, value, child) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                onPressed: themeModeSetter,
-                icon: value == ThemeMode.dark
-                    ? const Icon(Icons.dark_mode_outlined)
-                    : value == ThemeMode.light
-                        ? const Icon(Icons.light_mode_outlined)
-                        : const Icon(Icons.palette_outlined),
-              ),
-            ),
-          ),
-        ],
-      ),
       body: const HiScreen(),
       bottomNavigationBar: NavigationBar(
         selectedIndex: widget.selectedIndex,
@@ -61,6 +43,20 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
             label: "About Me",
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: themeModeSetter,
+        child: ValueListenableBuilder(
+          valueListenable: themeMode,
+          builder: (context, value, child) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: value == ThemeMode.dark
+                ? const Icon(Icons.dark_mode_outlined)
+                : value == ThemeMode.light
+                    ? const Icon(Icons.light_mode_outlined)
+                    : const Icon(Icons.palette_outlined),
+          ),
+        ),
       ),
     );
   }

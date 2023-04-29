@@ -11,73 +11,82 @@ class HiScreen extends StatelessWidget {
       "assets/images/material-you.png",
     ];
     return LayoutBuilder(
-      builder: (p0, c) => ListView(
-        padding:
-            EdgeInsets.symmetric(horizontal: c.biggest.width > 1000 ? 100 : 30),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                Image.asset(
-                  "assets/images/pp.png",
-                  scale: c.biggest.width > 800 ? 5 : 7,
+      builder: (p0, c) => Center(
+        child: SizedBox(
+          width: c.biggest.width > 1200 ? 1200 : null,
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/images/pp.png",
+                      scale: 7,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        "Hi, I’m Erkam. Welcome!",
+                        textScaleFactor: 1.7,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    "Hi, I’m Erkam. Welcome!",
-                    textScaleFactor: c.biggest.width > 800 ? 2 : 1.7,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: Theme.of(context).colorScheme.primary),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: ListTile(
+                  title: Text(
+                    "Latest Videos",
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textScaleFactor: 1.3,
+                  ),
+                  trailing: FilledButton.tonal(
+                    onPressed: () {},
+                    child: const Icon(Icons.navigate_next_rounded),
                   ),
                 ),
-              ],
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "YouTube Videos",
-              style: Theme.of(context).textTheme.titleLarge,
-              textScaleFactor: c.biggest.width > 800 ? 1.5 : 1.3,
-            ),
-            trailing: FilledButton.tonal(
-              onPressed: () {},
-              child: const Icon(Icons.navigate_next_rounded),
-            ),
-          ),
-          Row(
-            children: images
-                .map((e) => Expanded(
-                      child: Card(
-                        child: InkWell(
-                          onTap: () {},
-                          child: SizedBox(
-                            child: ListView(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: [
-                                Image.asset(e),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  child: Text(
-                                    "Title goes here!",
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                )
-                              ],
+              ),
+              SizedBox(
+                height: 250,
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  scrollDirection: Axis.horizontal,
+                  itemExtent: 300,
+                  children: images
+                      .map((e) => Card(
+                            child: InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Card(child: Image.asset(e)),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      child: Text(
+                                        "Title goes here!",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ))
-                .toList(),
-          )
-        ],
+                          ))
+                      .toList(),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
