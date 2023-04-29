@@ -14,10 +14,15 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         scrollBehavior: const CupertinoScrollBehavior(),
         themeMode: value,
+        navigatorKey: NavigationService.navigatorKey,
         theme: lightTheme(),
         darkTheme: darkTheme(),
         home: const HomeScreen(),
       ),
     );
   }
+}
+
+class NavigationService {
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }

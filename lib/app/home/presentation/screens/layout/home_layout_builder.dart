@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/app/app_config.dart';
 
 import '../../../home.dart';
 
@@ -8,6 +9,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+final globalContext = NavigationService.navigatorKey.currentContext!;
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
