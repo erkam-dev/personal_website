@@ -10,9 +10,9 @@ class FigmaRepositoryImpl extends FigmaRepository {
   FigmaRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<FigmaFile>>> getCommunityFiles() async {
+  Future<Either<Failure, List<FigmaFile>>> getProjectFiles(String id) async {
     try {
-      final response = await remoteDataSource.getCommunityFiles();
+      final response = await remoteDataSource.getProjectFiles(id);
       return Right(response);
     } on ServerException {
       return Left(ServerFailure());

@@ -7,4 +7,4 @@ abstract class FigmaEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCommunityFiles extends FigmaEvent {}
+class GetProjectFiles extends FigmaEvent {}
