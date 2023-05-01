@@ -5,6 +5,7 @@ import 'package:http_interceptor/http/http.dart';
 
 import '../core.dart';
 import '../network/network.dart';
+import 'features/init_figma_features.dart';
 
 final sl = GetIt.instance;
 
@@ -17,6 +18,7 @@ Future<void> init() async {
   await initHivePlugin();
 
   // Features
+  initFigmaFeatures();
   initExampleFeatures();
 }
 

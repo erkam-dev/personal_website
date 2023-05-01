@@ -9,4 +9,4 @@ const String githubHost = "github.com";
 // figma
 const String figmaApiKey = "figma_api_key";
 const String figmaHost = "api.figma.com";
-const String getProjectFilesUrl = "v1/projects/id/files";
+const String getProjectFilesUrl = "v1/projects/90918879/files";

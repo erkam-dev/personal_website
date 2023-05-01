@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:personal_website/core/constants/url_data.dart';
 import 'package:personal_website/core/core.dart';
+import 'package:personal_website/features/figma/figma.dart';
 
 abstract class FigmaRemoteDataSource {
-  Future getProjectFiles(String id);
+  Future getProjectFiles();
 }
 
 class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
@@ -13,7 +16,7 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
   FigmaRemoteDataSourceImpl({required this.client});
 
   @override
-  Future getProjectFiles(String id) async {
+  Future getProjectFiles() async {
     final response = await client.get(
       Uri(
         scheme: httpsScheme,
@@ -23,7 +26,10 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
       headers: {"X-FIGMA-TOKEN": sl<DotEnv>().get(figmaApiKey)},
     );
     if (response.statusCode == 200) {
-      return response;
+      List filesList = json.decode(response.body)['files'];
+      List result = filesList.map((e) => FigmaFileModel.fromJson(e)).toList();
+      print(result);
+      return result;
     } else {
       throw ServerException();
     }
