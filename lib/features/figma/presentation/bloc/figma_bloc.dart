@@ -20,6 +20,7 @@ class FigmaBloc extends Bloc<FigmaEvent, FigmaState> {
       failureOrValue.fold(
         (failure) => emit(FigmaInitial()),
         (value) {
+          projectFiles = value;
           emit(FigmaRedirection());
           emit(FigmaInitial());
         },

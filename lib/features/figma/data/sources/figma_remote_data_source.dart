@@ -28,7 +28,6 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
     if (response.statusCode == 200) {
       List filesList = json.decode(response.body)['files'];
       List result = filesList.map((e) => FigmaFileModel.fromJson(e)).toList();
-      print(result);
       return result;
     } else {
       throw ServerException();
