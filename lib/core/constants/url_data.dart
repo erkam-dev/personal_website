@@ -2,6 +2,7 @@ const String httpsScheme = "https";
 
 // youtube
 const String youtubeApiKey = "youtube_api_key";
+const String youtubeHost = "api.figma.com";
 
 // github
 const String githubHost = "github.com";
