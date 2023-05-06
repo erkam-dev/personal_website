@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/app/home/home.dart';
 
 import '../../../../../core/core.dart';
+import '../../../data/constants/home_page_data.dart';
 
 // ignore: must_be_immutable
 class HomeDesktopLayout extends StatefulWidget {
@@ -23,17 +23,12 @@ class _HomeDesktopLayoutState extends State<HomeDesktopLayout> {
             NavigationRail(
               labelType: NavigationRailLabelType.all,
               leading: Padding(
-                padding: const EdgeInsets.only(bottom: 30, top: 10),
-                child: FilledButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.download_outlined),
-                ),
-              ),
-              trailing: Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(bottom: 30),
                 child: ValueListenableBuilder(
                   valueListenable: themeMode,
-                  builder: (context, value, child) => ElevatedButton(
+                  builder: (context, value, child) => FloatingActionButton(
+                    elevation: 0,
+                    hoverElevation: 0,
                     onPressed: themeModeSetter,
                     child: value == ThemeMode.dark
                         ? const Icon(Icons.dark_mode_outlined)
@@ -69,7 +64,7 @@ class _HomeDesktopLayoutState extends State<HomeDesktopLayout> {
                   setState(() => widget.selectedIndex = value),
               selectedIndex: widget.selectedIndex,
             ),
-            const Expanded(child: HiScreen())
+            Expanded(child: pageList[widget.selectedIndex])
           ],
         ),
       ),

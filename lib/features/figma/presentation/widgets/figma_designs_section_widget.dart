@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../presentation.dart';
 
-class FigmaDesignsSection extends StatelessWidget {
-  const FigmaDesignsSection({super.key});
+class FigmaDesignsSectionWidget extends StatelessWidget {
+  const FigmaDesignsSectionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,8 @@ class FigmaDesignsSection extends StatelessWidget {
                                     child: Image.network(
                                       e.thumbnailUrl,
                                       height: 175,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.topCenter,
                                     )),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -73,7 +75,7 @@ class FigmaDesignsSection extends StatelessWidget {
                                         "Last Modified: ${e.lastModified.day}/${e.lastModified.month}/${e.lastModified.year}",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyMedium,
+                                            .labelSmall,
                                       ),
                                     ],
                                   ),

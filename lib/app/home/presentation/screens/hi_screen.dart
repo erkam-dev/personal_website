@@ -28,7 +28,7 @@ class _HiScreenState extends State<HiScreen> {
           child: ListView(
             children: const [
               HelloHeroWidget(),
-              FigmaDesignsSection(),
+              FigmaDesignsSectionWidget(),
             ],
           ),
         ),
