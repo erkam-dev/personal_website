@@ -21,14 +21,13 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: ListTile(
               title: Text(
-                "Latest Videos",
+                "YouTube Videos",
                 style: Theme.of(context).textTheme.titleLarge,
                 textScaleFactor: 1.3,
               ),
               trailing: FilledButton.tonal(
-                onPressed: () => html.window.open(
-                    'https://www.youtube.com/files/project/90918879',
-                    'new tab'),
+                onPressed: () => html.window
+                    .open('https://www.youtube.com/@erkam_dev', 'new tab'),
                 child: const Icon(Icons.navigate_next_rounded),
               ),
             ),
@@ -39,55 +38,79 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               scrollDirection: Axis.horizontal,
               itemExtent: 300,
-              children: youtubeBloc.projectFiles
-                  .map((e) => Card(
-                        child: InkWell(
-                          onTap: () => html.window.open(
-                              'https://www.youtube.com/file/${e.key}',
-                              'new tab'),
-                          child: SizedBox(
-                            child: ListView(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: [
-                                Card(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .surfaceVariant,
-                                    child: Image.network(
-                                      e.thumbnailUrl,
-                                      height: 175,
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.topCenter,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        e.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium,
+              children: (state.runtimeType == YoutubeLoading)
+                  ? <Widget>[const Center(child: CircularProgressIndicator())]
+                  : youtubeBloc.youtubeVideos
+                      .map((e) => Card(
+                            child: InkWell(
+                              onTap: () => html.window.open(
+                                  'https://www.youtube.com/watch?v=${e.id}',
+                                  'new tab'),
+                              child: SizedBox(
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Card(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surfaceVariant,
+                                        child: SizedBox(
+                                          height: 175,
+                                          child: Image(
+                                            image: NetworkImage(
+                                                "https://img.youtube.com/vi/${e.id}/sddefault.jpg",
+                                                headers: {
+                                                  'Content-Type':
+                                                      "json/application",
+                                                }),
+                                            loadingBuilder: (context, child,
+                                                loadingProgress) {
+                                              return const Center(
+                                                  child:
+                                                      CircularProgressIndicator());
+                                            },
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              debugPrint(error.toString());
+                                              return const Center(
+                                                  child: Icon(Icons
+                                                      .error_outline_rounded));
+                                            },
+                                            fit: BoxFit.cover,
+                                            alignment: Alignment.topCenter,
+                                          ),
+                                        )),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            e.title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Text(
+                                            "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall,
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        "Last Modified: ${e.lastModified.day}/${e.lastModified.month}/${e.lastModified.year}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ))
-                  .toList(),
+                          ))
+                      .toList(),
             ),
           ),
         ],

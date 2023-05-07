@@ -10,9 +10,20 @@ class YoutubeRepositoryImpl extends YoutubeRepository {
   YoutubeRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<YoutubeFile>>> getChannelPlaylists() async {
+  Future<Either<Failure, List<YoutubeVideo>>> getPlaylistItems(
+      String playlistId) async {
     try {
-      final response = await remoteDataSource.getProjectFiles();
+      final response = await remoteDataSource.getPlaylistItems(playlistId);
+      return Right(response);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<String>>> getPlaylists() async {
+    try {
+      final response = await remoteDataSource.getPlaylists();
       return Right(response);
     } on ServerException {
       return Left(ServerFailure());

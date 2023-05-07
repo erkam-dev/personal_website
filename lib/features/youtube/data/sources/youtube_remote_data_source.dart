@@ -8,7 +8,8 @@ import 'package:personal_website/core/core.dart';
 import '../data.dart';
 
 abstract class YoutubeRemoteDataSource {
-  Future getProjectFiles();
+  Future getPlaylists();
+  Future getPlaylistItems(String playlistId);
 }
 
 class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
@@ -17,18 +18,47 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
   YoutubeRemoteDataSourceImpl({required this.client});
 
   @override
-  Future getProjectFiles() async {
+  Future getPlaylists() async {
     final response = await client.get(
       Uri(
-        scheme: httpsScheme,
-        host: youtubeHost,
-        path: getProjectFilesUrl,
-      ),
-      headers: {"X-FIGMA-TOKEN": sl<DotEnv>().get(youtubeApiKey)},
+          scheme: httpsScheme,
+          host: youtubeHost,
+          path: playlistsUrl,
+          queryParameters: {
+            'part': 'snippet',
+            'channelId': sl<DotEnv>().get(youtubeChannelId),
+            'maxResults': '10',
+            'key': sl<DotEnv>().get(youtubeApiKey),
+          }),
     );
     if (response.statusCode == 200) {
-      List filesList = json.decode(response.body)['files'];
-      List result = filesList.map((e) => YoutubeFileModel.fromJson(e)).toList();
+      List playlist = json.decode(response.body)['items'];
+      List<String> playlistsIdList =
+          playlist.map((e) => e['id'].toString()).toList();
+      return playlistsIdList;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future getPlaylistItems(String playlistId) async {
+    final response = await client.get(
+      Uri(
+          scheme: httpsScheme,
+          host: youtubeHost,
+          path: playlistItemsUrl,
+          queryParameters: {
+            'part': 'snippet',
+            'playlistId': playlistId,
+            'maxResults': '10',
+            'key': sl<DotEnv>().get(youtubeApiKey),
+          }),
+    );
+    if (response.statusCode == 200) {
+      List filesList = json.decode(response.body)['items'];
+      List result =
+          filesList.map((e) => YoutubeVideoModel.fromJson(e)).toList();
       return result;
     } else {
       throw ServerException();

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/app/home/home.dart';
 
 import '../../../../../core/core.dart';
+import '../../../data/data.dart';
+import 'layout.dart';
 
 // ignore: must_be_immutable
 class HomeMobileLayout extends StatefulWidget {
-  int selectedIndex;
-  HomeMobileLayout({super.key, required this.selectedIndex});
+  const HomeMobileLayout({super.key});
 
   @override
   State<HomeMobileLayout> createState() => _HomeMobileLayoutState();
@@ -16,11 +16,10 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const HiScreen(),
+      body: pageList[selectedIndex],
       bottomNavigationBar: NavigationBar(
-        selectedIndex: widget.selectedIndex,
-        onDestinationSelected: (value) =>
-            setState(() => widget.selectedIndex = value),
+        selectedIndex: selectedIndex,
+        onDestinationSelected: (value) => setState(() => selectedIndex = value),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.waving_hand_outlined),

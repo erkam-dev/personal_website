@@ -7,21 +7,38 @@ part 'youtube_event.dart';
 part 'youtube_state.dart';
 
 class YoutubeBloc extends Bloc<YoutubeEvent, YoutubeState> {
-  List<YoutubeFile> projectFiles;
-  final GetChannelPlaylistsUsecase getChannelPlaylistsUsecase;
+  List<YoutubeVideo> youtubeVideos;
+  List<String> playlistIdList;
+  final GetPlaylistItemsUsecase getPlaylistItemsUsecase;
+  final GetPlaylistsUsecase getPlaylistsUsecase;
 
   YoutubeBloc({
-    required this.projectFiles,
-    required this.getChannelPlaylistsUsecase,
+    required this.youtubeVideos,
+    required this.playlistIdList,
+    required this.getPlaylistItemsUsecase,
+    required this.getPlaylistsUsecase,
   }) : super(YoutubeInitial()) {
-    on<GetProjectFiles>((event, emit) async {
+    on<GetPlaylists>((event, emit) async {
       emit(YoutubeLoading());
-      final failureOrValue = await getChannelPlaylistsUsecase(NoParams());
+      final failureOrValue = await getPlaylistsUsecase(NoParams());
+      failureOrValue.fold(
+        (l) => emit(YoutubeInitial()),
+        (r) {
+          playlistIdList = r;
+          for (var playlistId in playlistIdList) {
+            add(GetPlaylistItems(playlistId: playlistId));
+          }
+        },
+      );
+    });
+    on<GetPlaylistItems>((event, emit) async {
+      emit(YoutubeLoading());
+      final failureOrValue = await getPlaylistItemsUsecase(
+          GetPlaylistItemsParams(playlistId: event.playlistId));
       failureOrValue.fold(
         (failure) => emit(YoutubeInitial()),
         (value) {
-          projectFiles = value;
-          emit(YoutubeRedirection());
+          youtubeVideos.addAll(value);
           emit(YoutubeInitial());
         },
       );

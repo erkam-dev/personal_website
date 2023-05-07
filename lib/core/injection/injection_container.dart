@@ -2,6 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http/http.dart';
+import 'package:personal_website/core/injection/features/init_youtube_features.dart';
 
 import '../core.dart';
 import '../network/network.dart';
@@ -19,6 +20,7 @@ Future<void> init() async {
 
   // Features
   initFigmaFeatures();
+  initYoutubeFeatures();
   initExampleFeatures();
 }
 

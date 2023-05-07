@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/core.dart';
 import '../../../data/constants/home_page_data.dart';
+import 'layout.dart';
 
 // ignore: must_be_immutable
 class HomeDesktopLayout extends StatefulWidget {
-  int selectedIndex;
-  HomeDesktopLayout({super.key, required this.selectedIndex});
+  const HomeDesktopLayout({super.key});
 
   @override
   State<HomeDesktopLayout> createState() => _HomeDesktopLayoutState();
@@ -61,10 +61,10 @@ class _HomeDesktopLayoutState extends State<HomeDesktopLayout> {
                 ),
               ],
               onDestinationSelected: (value) =>
-                  setState(() => widget.selectedIndex = value),
-              selectedIndex: widget.selectedIndex,
+                  setState(() => selectedIndex = value),
+              selectedIndex: selectedIndex,
             ),
-            Expanded(child: pageList[widget.selectedIndex])
+            Expanded(child: pageList[selectedIndex])
           ],
         ),
       ),
