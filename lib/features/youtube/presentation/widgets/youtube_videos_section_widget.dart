@@ -1,8 +1,6 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../presentation.dart';
 
@@ -26,8 +24,8 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                 textScaleFactor: 1.3,
               ),
               trailing: FilledButton.tonal(
-                onPressed: () => html.window
-                    .open('https://www.youtube.com/@erkam_dev', 'new tab'),
+                onPressed: () =>
+                    launchUrl(Uri.parse('https://www.youtube.com/@erkam_dev')),
                 child: const Icon(Icons.navigate_next_rounded),
               ),
             ),
@@ -43,66 +41,63 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                   : youtubeBloc.youtubeVideos
                       .map((e) => Card(
                             child: InkWell(
-                              onTap: () => html.window.open(
-                                  'https://www.youtube.com/watch?v=${e.id}',
-                                  'new tab'),
-                              child: SizedBox(
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  children: [
-                                    Card(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .surfaceVariant,
-                                        child: SizedBox(
-                                          height: 175,
-                                          child: Image(
-                                            image: NetworkImage(
-                                                "https://img.youtube.com/vi/${e.id}/sddefault.jpg"),
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              return const Center(
-                                                  child:
-                                                      CircularProgressIndicator());
-                                            },
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              debugPrint(error.toString());
-                                              return const Center(
-                                                  child: Icon(Icons
-                                                      .error_outline_rounded));
-                                            },
-                                            fit: BoxFit.cover,
-                                            alignment: Alignment.topCenter,
-                                          ),
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            e.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Text(
-                                            "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall,
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                              onTap: () => launchUrl(Uri.parse(
+                                  'https://www.youtube.com/watch?v=${e.id}')),
+                              child: ListView(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                children: [
+                                  Card(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceVariant,
+                                      child: SizedBox(
+                                        height: 175,
+                                        child: Image(
+                                          image: NetworkImage(
+                                              "https://img.youtube.com/vi/${e.id}/hqdefault.jpg"),
+                                          loadingBuilder: (context, child,
+                                              loadingProgress) {
+                                            return const Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          },
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            debugPrint(error.toString());
+                                            return const Center(
+                                                child: Icon(Icons
+                                                    .error_outline_rounded));
+                                          },
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.topCenter,
+                                        ),
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          e.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(
+                                          "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ))

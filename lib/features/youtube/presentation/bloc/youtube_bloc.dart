@@ -39,7 +39,9 @@ class YoutubeBloc extends Bloc<YoutubeEvent, YoutubeState> {
         (failure) => emit(YoutubeInitial()),
         (value) {
           youtubeVideos.addAll(value);
-          emit(YoutubeInitial());
+          if (event.playlistId == playlistIdList.last) {
+            emit(YoutubeInitial());
+          }
         },
       );
     });

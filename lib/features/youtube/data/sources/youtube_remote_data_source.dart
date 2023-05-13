@@ -22,7 +22,7 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
     final response = await client.get(
       Uri(
           scheme: httpsScheme,
-          host: youtubeHost,
+          host: googleHost,
           path: playlistsUrl,
           queryParameters: {
             'part': 'snippet',
@@ -32,6 +32,13 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
           }),
     );
     if (response.statusCode == 200) {
+      // Document site = Document.html(response.body);
+      // List<String> result = site
+      //     .querySelectorAll("#video-title")
+      //     .map((e) => e.innerHtml.toString())
+      //     .toList();
+      // return result;
+
       List playlist = json.decode(response.body)['items'];
       List<String> playlistsIdList =
           playlist.map((e) => e['id'].toString()).toList();
@@ -46,7 +53,7 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
     final response = await client.get(
       Uri(
           scheme: httpsScheme,
-          host: youtubeHost,
+          host: googleHost,
           path: playlistItemsUrl,
           queryParameters: {
             'part': 'snippet',

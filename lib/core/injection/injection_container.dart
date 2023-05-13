@@ -13,7 +13,7 @@ final sl = GetIt.instance;
 @override
 Future<void> init() async {
   // Core
-  initCore();
+  await initCore();
 
   // Plugins
   await initHivePlugin();
@@ -21,12 +21,12 @@ Future<void> init() async {
   // Features
   initFigmaFeatures();
   initYoutubeFeatures();
-  initExampleFeatures();
+  // initExampleFeatures();
 }
 
-void initCore() async {
-  sl.registerLazySingleton<DotEnv>(() => DotEnv());
-  await sl<DotEnv>().load();
+initCore() async {
   sl.registerLazySingleton<Client>(
       () => InterceptedClient.build(interceptors: [CustomInterceptor()]));
+  sl.registerLazySingleton<DotEnv>(() => DotEnv());
+  await sl<DotEnv>().load();
 }

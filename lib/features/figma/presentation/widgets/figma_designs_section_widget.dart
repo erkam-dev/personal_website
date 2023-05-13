@@ -1,8 +1,6 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../presentation.dart';
 
@@ -26,8 +24,8 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                 textScaleFactor: 1.3,
               ),
               trailing: FilledButton.tonal(
-                onPressed: () => html.window.open(
-                    'https://www.figma.com/files/project/90918879', 'new tab'),
+                onPressed: () => launchUrl(
+                    Uri.parse('https://www.figma.com/files/project/90918879')),
                 child: const Icon(Icons.navigate_next_rounded),
               ),
             ),
@@ -41,8 +39,8 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
               children: figmaBloc.projectFiles
                   .map((e) => Card(
                         child: InkWell(
-                          onTap: () => html.window.open(
-                              'https://www.figma.com/file/${e.key}', 'new tab'),
+                          onTap: () => launchUrl(
+                              Uri.parse('https://www.figma.com/file/${e.key}')),
                           child: SizedBox(
                             child: ListView(
                               shrinkWrap: true,
