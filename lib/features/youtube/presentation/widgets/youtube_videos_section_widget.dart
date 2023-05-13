@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_network/image_network.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../presentation.dart';
@@ -38,70 +39,73 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
               itemExtent: 300,
               children: (state.runtimeType == YoutubeLoading)
                   ? <Widget>[const Center(child: CircularProgressIndicator())]
-                  : youtubeBloc.youtubeVideos
-                      .map((e) => Card(
-                            child: InkWell(
-                              onTap: () => launchUrl(Uri.parse(
-                                  'https://www.youtube.com/watch?v=${e.id}')),
-                              child: ListView(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                                  Card(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .surfaceVariant,
-                                      child: SizedBox(
-                                        height: 175,
-                                        child: Image(
-                                          image: NetworkImage(
-                                              "https://img.youtube.com/vi/${e.id}/hqdefault.jpg"),
-                                          loadingBuilder: (context, child,
-                                              loadingProgress) {
-                                            return const Center(
-                                                child:
-                                                    CircularProgressIndicator());
-                                          },
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            debugPrint(error.toString());
-                                            return const Center(
-                                                child: Icon(Icons
-                                                    .error_outline_rounded));
-                                          },
-                                          fit: BoxFit.cover,
-                                          alignment: Alignment.topCenter,
-                                        ),
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          e.title,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall,
-                                        ),
-                                      ],
+                  : youtubeBloc.youtubeVideos.map((e) {
+                      return Card(
+                        child: InkWell(
+                          onTap: () => launchUrl(Uri.parse(
+                              'https://www.youtube.com/watch?v=${e.id}')),
+                          child: ListView(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: [
+                              Card(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceVariant,
+                                  child: SizedBox(
+                                    height: 175,
+                                    child: ImageNetwork(
+                                      image: e.thumbnailUrl,
+                                      width: 310,
+                                      height: 175,
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ))
-                      .toList(),
+                                    //  Image(
+                                    //   image: NetworkImage(e.thumbnailUrl),
+                                    //   loadingBuilder:
+                                    //       (context, child, loadingProgress) {
+                                    //     return const Center(
+                                    //         child: CircularProgressIndicator());
+                                    //   },
+                                    //   errorBuilder:
+                                    //       (context, error, stackTrace) {
+                                    //     debugPrint("Error: $error");
+                                    //     debugPrint("Stack Trace: $stackTrace");
+                                    //     return const Center(
+                                    //         child: Icon(
+                                    //             Icons.error_outline_rounded));
+                                    //   },
+                                    //   fit: BoxFit.cover,
+                                    //   alignment: Alignment.topCenter,
+                                    // ),
+                                  )),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      e.title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
             ),
           ),
         ],
