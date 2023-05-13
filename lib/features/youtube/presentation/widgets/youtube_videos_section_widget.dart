@@ -59,11 +59,7 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                           height: 175,
                                           child: Image(
                                             image: NetworkImage(
-                                                "https://img.youtube.com/vi/${e.id}/sddefault.jpg",
-                                                headers: {
-                                                  'Content-Type':
-                                                      "json/application",
-                                                }),
+                                                "https://img.youtube.com/vi/${e.id}/sddefault.jpg"),
                                             loadingBuilder: (context, child,
                                                 loadingProgress) {
                                               return const Center(
