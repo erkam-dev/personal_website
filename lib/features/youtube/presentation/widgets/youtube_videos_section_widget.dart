@@ -32,18 +32,17 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 250,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              scrollDirection: Axis.horizontal,
-              itemExtent: 300,
-              children: (state.runtimeType == YoutubeLoading)
-                  ? <Widget>[const Center(child: CircularProgressIndicator())]
-                  : youtubeBloc.youtubeVideos.map((e) {
+            height: 220,
+            child: (state.runtimeType == YoutubeLoading)
+                ? const Center(child: CircularProgressIndicator())
+                : ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    scrollDirection: Axis.horizontal,
+                    itemExtent: 300,
+                    children: youtubeBloc.youtubeVideos.map((e) {
                       return Card(
                         child: InkWell(
-                          onTap: () => launchUrl(Uri.parse(
-                              'https://www.youtube.com/watch?v=${e.id}')),
+                          onTap: () => openVideo(e.id),
                           child: ListView(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -53,30 +52,13 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                       .colorScheme
                                       .surfaceVariant,
                                   child: SizedBox(
-                                    height: 175,
+                                    height: 150,
                                     child: ImageNetwork(
                                       image: e.thumbnailUrl,
-                                      width: 310,
-                                      height: 175,
+                                      width: 300,
+                                      height: 150,
+                                      onTap: () => openVideo(e.id),
                                     ),
-                                    //  Image(
-                                    //   image: NetworkImage(e.thumbnailUrl),
-                                    //   loadingBuilder:
-                                    //       (context, child, loadingProgress) {
-                                    //     return const Center(
-                                    //         child: CircularProgressIndicator());
-                                    //   },
-                                    //   errorBuilder:
-                                    //       (context, error, stackTrace) {
-                                    //     debugPrint("Error: $error");
-                                    //     debugPrint("Stack Trace: $stackTrace");
-                                    //     return const Center(
-                                    //         child: Icon(
-                                    //             Icons.error_outline_rounded));
-                                    //   },
-                                    //   fit: BoxFit.cover,
-                                    //   alignment: Alignment.topCenter,
-                                    // ),
                                   )),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -106,10 +88,12 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                         ),
                       );
                     }).toList(),
-            ),
+                  ),
           ),
         ],
       ),
     );
   }
+
+  openVideo(id) => launchUrl(Uri.parse('https://www.youtube.com/watch?v=$id'));
 }
