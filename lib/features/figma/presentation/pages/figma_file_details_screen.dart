@@ -45,14 +45,14 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
                 maxWidth: 1000,
                 minWidth: 500,
               ),
-              child: ListView(padding: const EdgeInsets.all(15), children: [
-                Card(
-                  child: SizedBox(
-                    height: 400,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Expanded(
+                  child: Card(
                     child: HtmlElementView(viewType: widget.figmaFile.key),
                   ),
-                )
-              ]),
+                ),
+              ),
             ),
           ),
         ),

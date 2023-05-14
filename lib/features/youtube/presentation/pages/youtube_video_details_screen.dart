@@ -51,6 +51,19 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                     params: params,
                   )),
                 ),
+                ListTile(
+                  title: Text(
+                    widget.video.title,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      widget.video.description,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                )
               ]),
             ),
           ),
