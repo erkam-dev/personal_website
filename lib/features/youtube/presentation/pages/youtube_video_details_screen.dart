@@ -1,9 +1,8 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:personal_website/features/youtube/youtube.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubeVideoDetailsScreen extends StatefulWidget {
   final YoutubeVideo video;
@@ -15,16 +14,15 @@ class YoutubeVideoDetailsScreen extends StatefulWidget {
 }
 
 class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
+  var params = const YoutubePlayerParams();
   @override
   void initState() {
     super.initState();
-    final element = IFrameElement()
-      ..src = "https://www.youtube.com/embed/${widget.video.id}"
-      ..title = widget.video.title
-      ..allowFullscreen = true;
-    ui.platformViewRegistry.registerViewFactory(
-      widget.video.id,
-      (int viewId) => element,
+    params = const YoutubePlayerParams(
+      enableCaption: true,
+      showControls: true,
+      showFullscreenButton: true,
+      strictRelatedVideos: true,
     );
   }
 
@@ -46,11 +44,13 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
               ),
               child: ListView(padding: const EdgeInsets.all(15), children: [
                 Card(
-                  child: SizedBox(
-                    height: 400,
-                    child: HtmlElementView(viewType: widget.video.id),
-                  ),
-                )
+                  child: YoutubePlayer(
+                      controller: YoutubePlayerController.fromVideoId(
+                    videoId: widget.video.id,
+                    autoPlay: true,
+                    params: params,
+                  )),
+                ),
               ]),
             ),
           ),

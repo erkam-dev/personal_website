@@ -71,11 +71,11 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.titleMedium,
                                   ),
-                                  trailing: IconButton(
-                                      onPressed: () => openPrototype(e.key),
-                                      tooltip: "Run prototype in Figma",
-                                      icon: const Icon(
-                                          Icons.play_arrow_outlined)),
+                                  trailing: OutlinedButton(
+                                    onPressed: () => openPrototype(e.key),
+                                    child:
+                                        const Icon(Icons.play_arrow_outlined),
+                                  ),
                                 ),
                               ],
                             ),
