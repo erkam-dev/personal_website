@@ -20,7 +20,7 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
     final response = await client.get(
       Uri(
         scheme: httpsScheme,
-        host: figmaHost,
+        host: figmaApiHost,
         path: getProjectFilesUrl,
       ),
       headers: {"X-FIGMA-TOKEN": sl<DotEnv>().get(figmaApiKey)},

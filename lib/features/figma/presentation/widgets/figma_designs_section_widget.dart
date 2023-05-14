@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_website/core/core.dart';
+import 'package:personal_website/features/figma/presentation/pages/figma_file_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../presentation.dart';
@@ -32,54 +34,62 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
           ),
           SizedBox(
             height: 240,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              scrollDirection: Axis.horizontal,
-              itemExtent: 300,
-              children: figmaBloc.projectFiles
-                  .map((e) => Card(
-                        child: InkWell(
-                          onTap: () => openDesignFile(e.key),
-                          child: ListView(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              Card(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceVariant,
-                                  child: Image.network(
-                                    e.thumbnailUrl,
-                                    height: 175,
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.topCenter,
-                                  )),
-                              ListTile(
-                                title: Text(
-                                  e.name,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
+            child: (state.runtimeType == FigmaLoading)
+                ? const Center(child: CircularProgressIndicator())
+                : ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    scrollDirection: Axis.horizontal,
+                    itemExtent: 300,
+                    children: figmaBloc.projectFiles.map((e) {
+                      openDesignFile(key) => Navigator.push(
+                          context,
+                          HeroDialogRoute(
+                              builder: (context) =>
+                                  FigmaFileDetailsScreen(figmaFile: e)));
+                      return Hero(
+                        tag: e,
+                        child: Card(
+                          child: InkWell(
+                            onTap: () => openDesignFile(e.key),
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                Card(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceVariant,
+                                    child: Image.network(
+                                      e.thumbnailUrl,
+                                      height: 175,
+                                      fit: BoxFit.cover,
+                                      alignment: Alignment.topCenter,
+                                    )),
+                                ListTile(
+                                  title: Text(
+                                    e.name,
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
+                                  ),
+                                  trailing: IconButton(
+                                      onPressed: () => openPrototype(e.key),
+                                      tooltip: "Run prototype in Figma",
+                                      icon: const Icon(
+                                          Icons.play_arrow_outlined)),
                                 ),
-                                trailing: IconButton(
-                                    onPressed: () => openPrototype(e.key),
-                                    tooltip: "Run prototype in Figma",
-                                    icon:
-                                        const Icon(Icons.play_arrow_outlined)),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ))
-                  .toList(),
-            ),
+                      );
+                    }).toList(),
+                  ),
           ),
         ],
       ),
     );
   }
 
-  openDesignFile(key) =>
-      launchUrl(Uri.parse('https://www.figma.com/file/$key'));
   openPrototype(key) =>
       launchUrl(Uri.parse('https://www.figma.com/proto/$key'));
 }

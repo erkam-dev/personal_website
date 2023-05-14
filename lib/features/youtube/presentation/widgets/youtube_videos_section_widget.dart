@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
+import 'package:personal_website/core/core.dart';
+import 'package:personal_website/features/youtube/presentation/pages/youtube_video_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../presentation.dart';
+import '../../youtube.dart';
 
 class YoutubeVideosSectionWidget extends StatelessWidget {
   const YoutubeVideosSectionWidget({super.key});
@@ -11,6 +13,13 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     YoutubeBloc youtubeBloc = BlocProvider.of<YoutubeBloc>(context);
+    openVideo(YoutubeVideo video) {
+      return Navigator.push(
+          context,
+          HeroDialogRoute(
+              builder: (context) => YoutubeVideoDetailsScreen(video: video)));
+    }
+
     return BlocBuilder(
       bloc: youtubeBloc,
       builder: (context, state) => Column(
@@ -40,51 +49,55 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemExtent: 300,
                     children: youtubeBloc.youtubeVideos.map((e) {
-                      return Card(
-                        child: InkWell(
-                          onTap: () => openVideo(e.id),
-                          child: ListView(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              Card(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceVariant,
-                                  child: SizedBox(
-                                    height: 150,
-                                    child: ImageNetwork(
-                                      image: e.thumbnailUrl,
-                                      width: 300,
+                      return Hero(
+                        tag: e,
+                        child: Card(
+                          child: InkWell(
+                            onTap: () => openVideo(e),
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                Card(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceVariant,
+                                    child: SizedBox(
                                       height: 150,
-                                      onTap: () => openVideo(e.id),
-                                    ),
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      e.title,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelSmall,
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                                      child: ImageNetwork(
+                                        image: e.thumbnailUrl,
+                                        width: 300,
+                                        height: 150,
+                                        onTap: () => openVideo(e),
+                                      ),
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        e.title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -95,6 +108,4 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
       ),
     );
   }
-
-  openVideo(id) => launchUrl(Uri.parse('https://www.youtube.com/watch?v=$id'));
 }
