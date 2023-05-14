@@ -32,7 +32,7 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 220,
+            height: 250,
             child: (state.runtimeType == YoutubeLoading)
                 ? const Center(child: CircularProgressIndicator())
                 : ListView(
@@ -71,9 +71,10 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium,
-                                      maxLines: 1,
+                                      maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
+                                    const SizedBox(height: 5),
                                     Text(
                                       "${e.publishedAt.day}/${e.publishedAt.month}/${e.publishedAt.year}",
                                       style: Theme.of(context)
