@@ -1,6 +1,7 @@
 // ignore: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/constants/layout_breakpoints.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../youtube.dart';
@@ -33,7 +34,7 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
       builder: (context, c) => Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: c.biggest.width < 600
+          padding: c.biggest.width < mobileBp
               ? EdgeInsets.zero
               : const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Hero(
@@ -42,7 +43,7 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
             child: Card(
               margin: EdgeInsets.zero,
               child: ConstrainedBox(
-                constraints: c.biggest.width < 600
+                constraints: c.biggest.width < mobileBp
                     ? const BoxConstraints()
                     : const BoxConstraints(
                         maxHeight: 1000,
@@ -51,10 +52,10 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                         minWidth: 500,
                       ),
                 child: Scaffold(
-                  appBar: AppBar(),
+                  appBar: AppBar(title: Text(widget.video.title)),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
                     Card(
-                      shape: c.biggest.width < 600
+                      shape: c.biggest.width < mobileBp
                           ? const RoundedRectangleBorder()
                           : null,
                       child: YoutubePlayer(
@@ -64,19 +65,10 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                         params: params,
                       )),
                     ),
-                    ListTile(
-                      title: SelectableText(
-                        widget.video.title,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      subtitle: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: SelectableText(
-                          widget.video.description,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-                    )
+                    SelectableText(
+                      widget.video.description,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ]),
                 ),
               ),

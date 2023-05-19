@@ -15,7 +15,6 @@ dependencies:
   flutter_dotenv: ^5.0.2
   flutter_svg: ^2.0.5
   get_it: ^7.3.0
-  googleapis: ^11.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   html: ^0.15.3

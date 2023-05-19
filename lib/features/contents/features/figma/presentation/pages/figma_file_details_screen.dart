@@ -3,6 +3,7 @@ import 'dart:html';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/constants/layout_breakpoints.dart';
 
 import '../../figma.dart';
 
@@ -31,25 +32,38 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-        child: Hero(
-          tag: widget.figmaFile,
-          child: Card(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 800,
-                minHeight: 300,
-                maxWidth: 1000,
-                minWidth: 500,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Expanded(
-                  child: Card(
-                    child: HtmlElementView(viewType: widget.figmaFile.key),
+    return LayoutBuilder(
+      builder: (context, c) => Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: c.biggest.width < mobileBp
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Hero(
+            tag: widget.figmaFile,
+            child: Card(
+              margin: EdgeInsets.zero,
+              shape: c.biggest.width < mobileBp
+                  ? const RoundedRectangleBorder()
+                  : null,
+              child: ConstrainedBox(
+                constraints: c.biggest.width < mobileBp
+                    ? const BoxConstraints()
+                    : const BoxConstraints(
+                        maxHeight: 1000,
+                        minHeight: 300,
+                        maxWidth: 1000,
+                        minWidth: 500,
+                      ),
+                child: Scaffold(
+                  appBar: AppBar(title: Text(widget.figmaFile.name)),
+                  body: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Expanded(
+                      child: Card(
+                        child: HtmlElementView(viewType: widget.figmaFile.key),
+                      ),
+                    ),
                   ),
                 ),
               ),

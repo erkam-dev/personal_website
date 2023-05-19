@@ -43,6 +43,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                       openDesignFile(key) => Navigator.push(
                           context,
                           HeroDialogRoute(
+                              fullscreenDialog: true,
                               builder: (context) =>
                                   FigmaFileDetailsScreen(figmaFile: e)));
                       return Hero(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/core/constants/layout_breakpoints.dart';
 
 import '../../../../features/features.dart';
 import '../../home.dart';
@@ -16,7 +17,9 @@ class _HiScreenState extends State<HiScreen> {
     return LayoutBuilder(
       builder: (p0, c) => Center(
         child: SizedBox(
-          width: c.biggest.width > 1200 ? 1200 : null,
+          width: c.biggest.width > desktopBp.toDouble()
+              ? desktopBp.toDouble()
+              : null,
           child: ListView(
             children: const [
               HelloHeroWidget(),

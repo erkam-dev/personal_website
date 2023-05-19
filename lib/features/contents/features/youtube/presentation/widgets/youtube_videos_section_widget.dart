@@ -16,6 +16,7 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
       return Navigator.push(
           context,
           HeroDialogRoute(
+              fullscreenDialog: true,
               builder: (context) => YoutubeVideoDetailsScreen(video: video)));
     }
 
