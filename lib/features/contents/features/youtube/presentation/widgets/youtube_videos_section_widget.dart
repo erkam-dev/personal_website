@@ -50,6 +50,7 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                     children: youtubeBloc.youtubeVideos.map((e) {
                       return Hero(
                         tag: e,
+                        transitionOnUserGestures: true,
                         child: Card(
                           child: InkWell(
                             onTap: () => openVideo(e),

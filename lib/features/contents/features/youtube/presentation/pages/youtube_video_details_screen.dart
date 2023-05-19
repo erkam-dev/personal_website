@@ -29,43 +29,57 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-        child: Hero(
-          tag: widget.video,
-          child: Card(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 800,
-                minHeight: 300,
-                maxWidth: 1000,
-                minWidth: 500,
-              ),
-              child: ListView(padding: const EdgeInsets.all(15), children: [
-                Card(
-                  child: YoutubePlayer(
-                      controller: YoutubePlayerController.fromVideoId(
-                    videoId: widget.video.id,
-                    autoPlay: true,
-                    params: params,
-                  )),
-                ),
-                ListTile(
-                  title: Text(
-                    widget.video.title,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Text(
-                      widget.video.description,
-                      style: Theme.of(context).textTheme.titleMedium,
+    return LayoutBuilder(
+      builder: (context, c) => Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: c.biggest.width < 600
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Hero(
+            tag: widget.video,
+            transitionOnUserGestures: true,
+            child: Card(
+              margin: EdgeInsets.zero,
+              child: ConstrainedBox(
+                constraints: c.biggest.width < 600
+                    ? const BoxConstraints()
+                    : const BoxConstraints(
+                        maxHeight: 1000,
+                        minHeight: 300,
+                        maxWidth: 1000,
+                        minWidth: 500,
+                      ),
+                child: Scaffold(
+                  appBar: AppBar(),
+                  body: ListView(padding: const EdgeInsets.all(15), children: [
+                    Card(
+                      shape: c.biggest.width < 600
+                          ? const RoundedRectangleBorder()
+                          : null,
+                      child: YoutubePlayer(
+                          controller: YoutubePlayerController.fromVideoId(
+                        videoId: widget.video.id,
+                        autoPlay: true,
+                        params: params,
+                      )),
                     ),
-                  ),
-                )
-              ]),
+                    ListTile(
+                      title: SelectableText(
+                        widget.video.title,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: SelectableText(
+                          widget.video.description,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
             ),
           ),
         ),
