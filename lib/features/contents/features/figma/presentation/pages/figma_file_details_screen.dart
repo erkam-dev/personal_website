@@ -9,7 +9,9 @@ import '../../figma.dart';
 
 class FigmaFileDetailsScreen extends StatefulWidget {
   final FigmaFile figmaFile;
-  const FigmaFileDetailsScreen({super.key, required this.figmaFile});
+  final bool isPrototype;
+  const FigmaFileDetailsScreen(
+      {super.key, required this.figmaFile, required this.isPrototype});
 
   @override
   State<FigmaFileDetailsScreen> createState() => _FigmaFileDetailsScreenState();
@@ -20,12 +22,13 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
   void initState() {
     super.initState();
     final element = IFrameElement()
-      ..src =
-          """https://www.figma.com/embed?embed_host=astra&url=https://www.figma.com/file/${widget.figmaFile.key}"""
+      ..src = 'https://www.figma.com/embed?embed_host=astra&'
+          'url=https://www.figma.com/${widget.isPrototype ? "proto" : "file"}'
+          '/${widget.figmaFile.key}'
       ..title = widget.figmaFile.name
       ..allowFullscreen = true;
     ui.platformViewRegistry.registerViewFactory(
-      widget.figmaFile.key,
+      widget.figmaFile.key + widget.isPrototype.toString(),
       (int viewId) => element,
     );
   }
@@ -61,7 +64,9 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
                     padding: const EdgeInsets.all(10),
                     child: Expanded(
                       child: Card(
-                        child: HtmlElementView(viewType: widget.figmaFile.key),
+                        child: HtmlElementView(
+                            viewType: widget.figmaFile.key +
+                                widget.isPrototype.toString()),
                       ),
                     ),
                   ),

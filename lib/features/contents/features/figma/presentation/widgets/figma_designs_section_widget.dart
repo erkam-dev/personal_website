@@ -40,17 +40,18 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemExtent: 300,
                     children: figmaBloc.projectFiles.map((e) {
-                      openDesignFile(key) => Navigator.push(
+                      openDesignFile({key, isPrototype}) => Navigator.push(
                           context,
                           HeroDialogRoute(
                               fullscreenDialog: true,
-                              builder: (context) =>
-                                  FigmaFileDetailsScreen(figmaFile: e)));
+                              builder: (context) => FigmaFileDetailsScreen(
+                                  figmaFile: e, isPrototype: isPrototype)));
                       return Hero(
                         tag: e,
                         child: Card(
                           child: InkWell(
-                            onTap: () => openDesignFile(e.key),
+                            onTap: () =>
+                                openDesignFile(key: e.key, isPrototype: false),
                             child: ListView(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
@@ -72,7 +73,8 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                         Theme.of(context).textTheme.titleMedium,
                                   ),
                                   trailing: OutlinedButton(
-                                    onPressed: () => openPrototype(e.key),
+                                    onPressed: () => openDesignFile(
+                                        key: e.key, isPrototype: true),
                                     child:
                                         const Icon(Icons.play_arrow_outlined),
                                   ),
@@ -89,7 +91,4 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
       ),
     );
   }
-
-  openPrototype(key) =>
-      launchUrl(Uri.parse('https://www.figma.com/proto/$key'));
 }
