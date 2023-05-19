@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 
-import '../../../features/youtube/youtube.dart';
+import '../../../features/features.dart';
 import '../injection_container.dart';
 
 void initYoutubeFeatures() {

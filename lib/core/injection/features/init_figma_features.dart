@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 
-import '../../../features/figma/figma.dart';
+import '../../../features/features.dart';
 import '../injection_container.dart';
 
 void initFigmaFeatures() {

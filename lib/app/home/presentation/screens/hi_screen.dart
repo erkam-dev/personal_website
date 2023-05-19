@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../features/figma/figma.dart';
-import '../../../../features/youtube/youtube.dart';
+import '../../../../features/features.dart';
 import '../../home.dart';
 
 class HiScreen extends StatefulWidget {
