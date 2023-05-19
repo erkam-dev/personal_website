@@ -62,12 +62,10 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
                   appBar: AppBar(title: Text(widget.figmaFile.name)),
                   body: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Expanded(
-                      child: Card(
-                        child: HtmlElementView(
-                            viewType: widget.figmaFile.key +
-                                widget.isPrototype.toString()),
-                      ),
+                    child: Card(
+                      child: HtmlElementView(
+                          viewType: widget.figmaFile.key +
+                              widget.isPrototype.toString()),
                     ),
                   ),
                 ),
