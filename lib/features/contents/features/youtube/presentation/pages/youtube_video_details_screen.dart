@@ -41,6 +41,9 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
             tag: widget.video,
             transitionOnUserGestures: true,
             child: Card(
+              shape: c.biggest.width < mobileBp
+                  ? const RoundedRectangleBorder()
+                  : null,
               margin: EdgeInsets.zero,
               child: ConstrainedBox(
                 constraints: c.biggest.width < mobileBp
@@ -55,9 +58,6 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                   appBar: AppBar(title: Text(widget.video.title)),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
                     Card(
-                      shape: c.biggest.width < mobileBp
-                          ? const RoundedRectangleBorder()
-                          : null,
                       child: YoutubePlayer(
                           controller: YoutubePlayerController.fromVideoId(
                         videoId: widget.video.id,
