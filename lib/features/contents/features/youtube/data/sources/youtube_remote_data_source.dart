@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:personal_website/core/constants/url_data.dart';
 import 'package:personal_website/core/core.dart';
@@ -26,19 +25,12 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
           path: playlistsUrl,
           queryParameters: {
             'part': 'snippet',
-            'channelId': sl<DotEnv>().get(youtubeChannelId),
+            'channelId': const String.fromEnvironment(youtubeChannelId),
             'maxResults': '10',
-            'key': sl<DotEnv>().get(youtubeApiKey),
+            'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {
-      // Document site = Document.html(response.body);
-      // List<String> result = site
-      //     .querySelectorAll("#video-title")
-      //     .map((e) => e.innerHtml.toString())
-      //     .toList();
-      // return result;
-
       List playlist = json.decode(response.body)['items'];
       List<String> playlistsIdList =
           playlist.map((e) => e['id'].toString()).toList();
@@ -59,7 +51,7 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
             'part': 'snippet',
             'playlistId': playlistId,
             'maxResults': '10',
-            'key': sl<DotEnv>().get(youtubeApiKey),
+            'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {

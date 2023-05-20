@@ -27,6 +27,7 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
           '/${widget.figmaFile.key}'
       ..title = widget.figmaFile.name
       ..allowFullscreen = true;
+    //ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
       widget.figmaFile.key + widget.isPrototype.toString(),
       (int viewId) => element,

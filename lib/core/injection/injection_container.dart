@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http/http.dart';
@@ -24,9 +23,5 @@ Future<void> init() async {
   // initExampleFeatures();
 }
 
-initCore() async {
-  sl.registerLazySingleton<Client>(
-      () => InterceptedClient.build(interceptors: [CustomInterceptor()]));
-  sl.registerLazySingleton<DotEnv>(() => DotEnv());
-  await sl<DotEnv>().load();
-}
+initCore() async => sl.registerLazySingleton<Client>(
+    () => InterceptedClient.build(interceptors: [CustomInterceptor()]));
