@@ -52,9 +52,9 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                           child: InkWell(
                             onTap: () =>
                                 openDesignFile(key: e.key, isPrototype: false),
-                            child: ListView(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Card(
                                     color: Theme.of(context)
@@ -62,6 +62,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                         .surfaceVariant,
                                     child: Image.network(
                                       e.thumbnailUrl,
+                                      width: 300,
                                       height: 175,
                                       fit: BoxFit.cover,
                                       alignment: Alignment.topCenter,
