@@ -72,6 +72,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.titleMedium,
                                   ),
+                                  dense: true,
                                   trailing: OutlinedButton(
                                     onPressed: () => openDesignFile(
                                         key: e.key, isPrototype: true),

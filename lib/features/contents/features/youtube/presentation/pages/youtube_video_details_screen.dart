@@ -17,6 +17,7 @@ class YoutubeVideoDetailsScreen extends StatefulWidget {
 
 class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
   var params = const YoutubePlayerParams();
+  var controller = YoutubePlayerController();
   @override
   void initState() {
     super.initState();
@@ -26,6 +27,17 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
       showFullscreenButton: true,
       strictRelatedVideos: true,
     );
+    controller = YoutubePlayerController.fromVideoId(
+      videoId: widget.video.id,
+      autoPlay: true,
+      params: params,
+    );
+  }
+
+  @override
+  void dispose() {
+    controller.close();
+    super.dispose();
   }
 
   @override
@@ -57,14 +69,7 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                 child: Scaffold(
                   appBar: AppBar(title: Text(widget.video.title)),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
-                    Card(
-                      child: YoutubePlayer(
-                          controller: YoutubePlayerController.fromVideoId(
-                        videoId: widget.video.id,
-                        autoPlay: true,
-                        params: params,
-                      )),
-                    ),
+                    Card(child: YoutubePlayer(controller: controller)),
                     SelectableText(
                       widget.video.description,
                       style: Theme.of(context).textTheme.titleMedium,
