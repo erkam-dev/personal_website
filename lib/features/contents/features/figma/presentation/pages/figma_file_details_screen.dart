@@ -1,9 +1,6 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/constants/layout_breakpoints.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '../../figma.dart';
 
@@ -18,24 +15,31 @@ class FigmaFileDetailsScreen extends StatefulWidget {
 }
 
 class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
+  int selectedIndex = 0;
   @override
   void initState() {
+    selectedIndex = widget.isPrototype ? 1 : 0;
     super.initState();
-    final element = IFrameElement()
-      ..src = 'https://www.figma.com/embed?embed_host=astra&'
-          'url=https://www.figma.com/${widget.isPrototype ? "proto" : "file"}'
-          '/${widget.figmaFile.key}'
-      ..title = widget.figmaFile.name
-      ..allowFullscreen = true;
-    //ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-      widget.figmaFile.key + widget.isPrototype.toString(),
-      (int viewId) => element,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> webviews = [
+      WebViewX(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        initialContent: 'https://www.figma.com/embed?embed_host=astra&'
+            'url=https://www.figma.com/file'
+            '/${widget.figmaFile.key}',
+      ),
+      WebViewX(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        initialContent: 'https://www.figma.com/embed?embed_host=astra&'
+            'url=https://www.figma.com/proto'
+            '/${widget.figmaFile.key}',
+      ),
+    ];
     return LayoutBuilder(
       builder: (context, c) => Align(
         alignment: Alignment.center,
@@ -59,15 +63,20 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
                         maxWidth: 1000,
                         minWidth: 500,
                       ),
-                child: Scaffold(
-                  appBar: AppBar(title: Text(widget.figmaFile.name)),
-                  body: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Card(
-                      child: HtmlElementView(
-                          viewType: widget.figmaFile.key +
-                              widget.isPrototype.toString()),
+                child: DefaultTabController(
+                  length: 2,
+                  initialIndex: selectedIndex,
+                  child: Scaffold(
+                    appBar: AppBar(
+                      title: Text(widget.figmaFile.name),
+                      bottom: TabBar(
+                          onTap: (value) =>
+                              setState(() => selectedIndex = value),
+                          tabs: [Tab(text: "Design"), Tab(text: "Prototype")]),
                     ),
+                    body: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Card(child: TabBarView(children: webviews))),
                   ),
                 ),
               ),
