@@ -16,7 +16,6 @@ dependencies:
   get_it: ^7.3.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  html: ^0.15.3
   http: ^0.13.5
   http_interceptor: ^1.0.2
   image_network: ^2.5.2
