@@ -28,16 +28,11 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: ListTile(
-              title: Text(
-                "YouTube Videos",
-                style: Theme.of(context).textTheme.titleLarge,
-                textScaleFactor: 1.3,
-              ),
-              trailing: FilledButton.tonal(
-                onPressed: () =>
-                    launchUrl(Uri.parse('https://www.youtube.com/@erkam_dev')),
-                child: const Icon(Icons.navigate_next_rounded),
-              ),
+              onTap: () =>
+                  launchUrl(Uri.parse('https://www.youtube.com/@erkam_dev')),
+              title: Text("YouTube Videos",
+                  style: Theme.of(context).textTheme.titleLarge),
+              trailing: Icon(Icons.navigate_next_rounded),
             ),
           ),
           SizedBox(

@@ -15,13 +15,6 @@ class FigmaFileDetailsScreen extends StatefulWidget {
 }
 
 class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
-  int selectedIndex = 0;
-  @override
-  void initState() {
-    selectedIndex = widget.isPrototype ? 1 : 0;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     List<Widget> webviews = [
@@ -65,18 +58,20 @@ class _FigmaFileDetailsScreenState extends State<FigmaFileDetailsScreen> {
                       ),
                 child: DefaultTabController(
                   length: 2,
-                  initialIndex: selectedIndex,
+                  initialIndex: widget.isPrototype ? 1 : 0,
                   child: Scaffold(
                     appBar: AppBar(
                       title: Text(widget.figmaFile.name),
                       bottom: TabBar(
-                          onTap: (value) =>
-                              setState(() => selectedIndex = value),
                           tabs: [Tab(text: "Design"), Tab(text: "Prototype")]),
                     ),
                     body: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Card(child: TabBarView(children: webviews))),
+                        child: Card(
+                            child: TabBarView(
+                          children: webviews,
+                          physics: NeverScrollableScrollPhysics(),
+                        ))),
                   ),
                 ),
               ),

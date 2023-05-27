@@ -19,16 +19,11 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: ListTile(
-              title: Text(
-                "Figma Designs",
-                style: Theme.of(context).textTheme.titleLarge,
-                textScaleFactor: 1.3,
-              ),
-              trailing: FilledButton.tonal(
-                onPressed: () => launchUrl(
-                    Uri.parse('https://www.figma.com/files/project/90918879')),
-                child: const Icon(Icons.navigate_next_rounded),
-              ),
+              onTap: () => launchUrl(
+                  Uri.parse('https://www.figma.com/files/project/90918879')),
+              title: Text("Figma Designs",
+                  style: Theme.of(context).textTheme.titleLarge),
+              trailing: Icon(Icons.navigate_next_rounded),
             ),
           ),
           SizedBox(

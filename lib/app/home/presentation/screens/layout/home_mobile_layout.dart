@@ -16,7 +16,7 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pageList[selectedIndex],
+      body: SafeArea(child: pageList[selectedIndex]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (value) => setState(() => selectedIndex = value),

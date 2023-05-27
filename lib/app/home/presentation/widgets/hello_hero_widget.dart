@@ -7,27 +7,16 @@ class HelloHeroWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Image.asset(
-            "assets/images/pp.png",
-            scale: 7,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              "Hi, I’m Erkam. Welcome!",
-              textScaleFactor: 1.7,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.primary),
-            ),
-          ),
-        ],
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      title: Text(
+        "Hi, I’m Erkam. Welcome!",
+        style: Theme.of(context)
+            .textTheme
+            .displaySmall!
+            .copyWith(color: Theme.of(context).colorScheme.primary),
       ),
+      leading: Image.asset("assets/images/pp.png", scale: 10),
     );
   }
 }

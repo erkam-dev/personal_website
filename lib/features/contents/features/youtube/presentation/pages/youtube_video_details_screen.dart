@@ -67,14 +67,9 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                         minWidth: 500,
                       ),
                 child: Scaffold(
-                  appBar: AppBar(
-                    title: Text(widget.video.title),
-                    bottom: PreferredSize(
-                        preferredSize: Size.fromRadius(110),
-                        child:
-                            Card(child: YoutubePlayer(controller: controller))),
-                  ),
+                  appBar: AppBar(title: Text(widget.video.title)),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
+                    Card(child: YoutubePlayer(controller: controller)),
                     SelectableText(
                       widget.video.description,
                       style: Theme.of(context).textTheme.titleMedium,
