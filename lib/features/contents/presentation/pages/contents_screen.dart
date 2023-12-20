@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../../features/features.dart';
-import '../../home.dart';
+import '../../../../app/app.dart';
+import '../../contents.dart';
 
-class HiScreen extends StatelessWidget {
-  const HiScreen({super.key});
+class ContentsScreen extends StatelessWidget {
+  const ContentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return PageLayoutScheme(
       child: Column(
         children: [
-          HelloHeroWidget(),
           FigmaDesignsSectionWidget(),
           SizedBox(height: 30),
           YoutubeVideosSectionWidget(),
