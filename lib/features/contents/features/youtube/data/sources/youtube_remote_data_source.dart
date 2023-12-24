@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:personal_website/core/constants/url_data.dart';
 import 'package:personal_website/core/core.dart';
 
 import '../data.dart';
@@ -25,9 +24,9 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
           path: playlistsUrl,
           queryParameters: {
             'part': 'snippet',
-            'channelId': const String.fromEnvironment(youtubeChannelId),
+            // 'channelId': const String.fromEnvironment(youtubeChannelId),
             'maxResults': '10',
-            'key': const String.fromEnvironment(youtubeApiKey),
+            // 'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {
@@ -51,7 +50,7 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
             'part': 'snippet',
             'playlistId': playlistId,
             'maxResults': '10',
-            'key': const String.fromEnvironment(youtubeApiKey),
+            // 'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {
