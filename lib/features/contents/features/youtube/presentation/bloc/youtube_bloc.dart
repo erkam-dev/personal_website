@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/core/core.dart';
 
@@ -46,6 +49,14 @@ class YoutubeBloc extends Bloc<YoutubeEvent, YoutubeState> {
           }
         },
       );
+    });
+    on<GetVideos>((event, emit) {
+      emit(YoutubeLoading());
+      Map<String, dynamic> data =
+          json.decode(sl<FirebaseRemoteConfig>().getString(""));
+      print(data);
+
+      emit(YoutubeInitial());
     });
   }
 }

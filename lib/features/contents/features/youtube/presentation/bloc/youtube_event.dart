@@ -17,3 +17,5 @@ class GetPlaylistItems extends YoutubeEvent {
 }
 
 class GetPlaylists extends YoutubeEvent {}
+
+class GetVideos extends YoutubeEvent {}

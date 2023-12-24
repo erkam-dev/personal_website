@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:personal_website/core/constants/url_data.dart';
 
 import '../../../../../../core/core.dart';
 
