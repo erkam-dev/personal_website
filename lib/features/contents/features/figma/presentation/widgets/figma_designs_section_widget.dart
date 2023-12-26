@@ -19,8 +19,8 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: ListTile(
-              onTap: () => launchUrl(
-                  Uri.parse('https://www.figma.com/files/project/90918879')),
+              onTap: () =>
+                  launchUrl(Uri.parse('https://www.figma.com/@erkam_dev')),
               title: Text("Figma Designs",
                   style: Theme.of(context).textTheme.titleLarge),
               trailing: Icon(Icons.navigate_next_rounded),
@@ -35,21 +35,19 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemExtent: 300,
                     children: figmaBloc.projectFiles.map((e) {
-                      openDesignFile({key, isPrototype}) => Navigator.push(
+                      openDesignFile({key}) => Navigator.push(
                           context,
                           HeroDialogRoute(
                               fullscreenDialog: true,
-                              builder: (context) => FigmaFileDetailsScreen(
-                                  figmaFile: e, isPrototype: isPrototype)));
+                              builder: (context) =>
+                                  FigmaFileDetailsScreen(figmaFile: e)));
                       return Hero(
                         tag: e,
                         child: Card(
                           child: InkWell(
-                            onTap: () =>
-                                openDesignFile(key: e.key, isPrototype: false),
+                            onTap: () => openDesignFile(key: e.key),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Card(
                                     color: Theme.of(context)
@@ -67,11 +65,12 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                     e.name,
                                     style:
                                         Theme.of(context).textTheme.titleMedium,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                   dense: true,
                                   trailing: OutlinedButton(
-                                    onPressed: () => openDesignFile(
-                                        key: e.key, isPrototype: true),
+                                    onPressed: () => openDesignFile(key: e.key),
                                     child:
                                         const Icon(Icons.play_arrow_outlined),
                                   ),

@@ -13,6 +13,7 @@ Future<void> init() async {
 
   // Plugins
   await initHivePlugin();
+  initFirebasePlugin();
 
   // Features
   initFigmaFeatures();
