@@ -16,7 +16,6 @@ void initFigmaFeatures() {
       key: "",
       name: "",
       thumbnailUrl: "",
-      lastModified: DateTime.now(),
     ),
   );
   // entities
@@ -24,7 +23,6 @@ void initFigmaFeatures() {
         key: "",
         name: "",
         thumbnailUrl: "",
-        lastModified: DateTime.now(),
       ));
 
   // Use cases

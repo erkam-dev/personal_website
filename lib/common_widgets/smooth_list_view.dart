@@ -32,7 +32,7 @@ class _SmoothListViewState extends State<SmoothListView> {
     throttle(sink.stream).listen((offset) {
       pager.animateTo(
         offset,
-        duration: context.durationMilliseconds150(),
+        duration: context.durationMilliseconds300(),
         curve: Curves.easeOutCubic,
       );
     });
