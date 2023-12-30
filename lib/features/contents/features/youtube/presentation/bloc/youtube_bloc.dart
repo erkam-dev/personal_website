@@ -53,9 +53,11 @@ class YoutubeBloc extends Bloc<YoutubeEvent, YoutubeState> {
     on<GetVideos>((event, emit) {
       emit(YoutubeLoading());
       Map<String, dynamic> data =
-          json.decode(sl<FirebaseRemoteConfig>().getString(""));
-      print(data);
-
+          json.decode(sl<FirebaseRemoteConfig>().getString(youtubeDataKey));
+      List<YoutubeVideo> videos = (data['videos'] as List)
+          .map((e) => YoutubeVideoModel.fromJson(e))
+          .toList();
+      youtubeVideos = videos;
       emit(YoutubeInitial());
     });
   }

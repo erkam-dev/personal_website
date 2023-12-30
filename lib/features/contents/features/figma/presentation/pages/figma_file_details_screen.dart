@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/core/constants/layout_breakpoints.dart';
+import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
@@ -38,11 +38,12 @@ class FigmaFileDetailsScreen extends StatelessWidget {
                   appBar: AppBar(
                     title: Text(figmaFile.name),
                     actions: [
-                      IconButton(
+                      OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
                             "https://www.figma.com/community/file/${figmaFile.key}")),
                         icon: Icon(Icons.open_in_new_rounded),
-                      )
+                        label: Text("Open in new tab"),
+                      ).padOnly(right: 16)
                     ],
                   ),
                   body: Padding(

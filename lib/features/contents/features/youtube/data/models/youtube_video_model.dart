@@ -7,19 +7,14 @@ class YoutubeVideoModel extends YoutubeVideo {
     required super.id,
     required super.title,
     required super.description,
-    required super.thumbnailUrl,
     required super.publishedAt,
   });
   factory YoutubeVideoModel.fromJson(Map<String, dynamic> json) {
-    var snippet = json['snippet'];
-    var thumbnailUrl = snippet['thumbnails']['standard']['url'];
-    var videoId = snippet['resourceId']['videoId'];
     return YoutubeVideoModel(
-      id: videoId,
-      title: snippet['title'],
-      description: snippet['description'],
-      thumbnailUrl: thumbnailUrl,
-      publishedAt: DateTime.parse(snippet['publishedAt']),
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      publishedAt: DateTime.parse(json['published_at']),
     );
   }
 }
