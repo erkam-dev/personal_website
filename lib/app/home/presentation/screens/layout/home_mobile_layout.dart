@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/app/home/home.dart';
 
 import '../../../../../core/core.dart';
+import '../../../data/data.dart';
+import 'layout.dart';
 
 // ignore: must_be_immutable
 class HomeMobileLayout extends StatefulWidget {
-  int selectedIndex;
-  HomeMobileLayout({super.key, required this.selectedIndex});
+  const HomeMobileLayout({super.key});
 
   @override
   State<HomeMobileLayout> createState() => _HomeMobileLayoutState();
@@ -16,29 +16,10 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          ValueListenableBuilder(
-            valueListenable: themeMode,
-            builder: (context, value, child) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                onPressed: themeModeSetter,
-                icon: value == ThemeMode.dark
-                    ? const Icon(Icons.dark_mode_outlined)
-                    : value == ThemeMode.light
-                        ? const Icon(Icons.light_mode_outlined)
-                        : const Icon(Icons.palette_outlined),
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: const HiScreen(),
+      body: SafeArea(child: pageList[selectedIndex]),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: widget.selectedIndex,
-        onDestinationSelected: (value) =>
-            setState(() => widget.selectedIndex = value),
+        selectedIndex: selectedIndex,
+        onDestinationSelected: (value) => setState(() => selectedIndex = value),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.waving_hand_outlined),
@@ -61,6 +42,20 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout> {
             label: "About Me",
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: themeModeSetter,
+        child: ValueListenableBuilder(
+          valueListenable: themeMode,
+          builder: (context, value, child) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: value == ThemeMode.dark
+                ? const Icon(Icons.dark_mode_outlined)
+                : value == ThemeMode.light
+                    ? const Icon(Icons.light_mode_outlined)
+                    : const Icon(Icons.palette_outlined),
+          ),
+        ),
       ),
     );
   }

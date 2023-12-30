@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_website/app/app_config.dart';
+import 'package:personal_website/core/constants/layout_breakpoints.dart';
 
+import '../../../../../features/features.dart';
 import '../../../home.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,15 +13,28 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final globalContext = NavigationService.navigatorKey.currentContext!;
+int selectedIndex = 0;
+
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    FigmaBloc figmaBloc = BlocProvider.of<FigmaBloc>(context);
+    YoutubeBloc youtubeBloc = BlocProvider.of<YoutubeBloc>(context);
+    Future.microtask(() => {
+          figmaBloc.add(GetProjectFiles()),
+          youtubeBloc.add(GetVideos()),
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return constraints.biggest.width > 600
-            ? HomeDesktopLayout(selectedIndex: selectedIndex)
-            : HomeMobileLayout(selectedIndex: selectedIndex);
+        return constraints.biggest.width > mobileBp
+            ? const HomeDesktopLayout()
+            : const HomeMobileLayout();
       },
     );
   }
