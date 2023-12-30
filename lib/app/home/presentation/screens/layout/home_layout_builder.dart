@@ -20,11 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
     FigmaBloc figmaBloc = BlocProvider.of<FigmaBloc>(context);
     YoutubeBloc youtubeBloc = BlocProvider.of<YoutubeBloc>(context);
-    figmaBloc.add(GetProjectFiles());
-    youtubeBloc.add(GetPlaylists());
+    Future.microtask(() => {
+          figmaBloc.add(GetProjectFiles()),
+          youtubeBloc.add(GetVideos()),
+        });
   }
 
   @override

@@ -1,5 +1,3 @@
-// ignore: avoid_web_libraries_in_flutter
-
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/constants/layout_breakpoints.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';

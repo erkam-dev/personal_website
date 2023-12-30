@@ -12,12 +12,12 @@ initFirebasePlugin() async {
   sl.registerLazySingleton<FirebaseRemoteConfig>(() => remoteConfig);
   sl.registerLazySingleton<FirebaseAnalytics>(() => analytics);
   // Remote Config
-  sl<FirebaseRemoteConfig>().ensureInitialized();
-  sl<FirebaseRemoteConfig>().setConfigSettings(RemoteConfigSettings(
+  await sl<FirebaseRemoteConfig>().ensureInitialized();
+  await sl<FirebaseRemoteConfig>().setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(minutes: 1),
     minimumFetchInterval: const Duration(hours: 1),
   ));
-  sl<FirebaseRemoteConfig>().setDefaults(remoteConfigDefaults);
-  sl<FirebaseRemoteConfig>().fetchAndActivate();
+  await sl<FirebaseRemoteConfig>().setDefaults(remoteConfigDefaults);
+  await sl<FirebaseRemoteConfig>().fetchAndActivate();
   ;
 }

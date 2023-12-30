@@ -70,9 +70,10 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                                   ),
                                   dense: true,
                                   trailing: OutlinedButton(
-                                    onPressed: () => openDesignFile(key: e.key),
+                                    onPressed: () => launchUrl(Uri.parse(
+                                        "https://www.figma.com/community/file/${e.key}")),
                                     child:
-                                        const Icon(Icons.play_arrow_outlined),
+                                        const Icon(Icons.open_in_new_rounded),
                                   ),
                                 ),
                               ],

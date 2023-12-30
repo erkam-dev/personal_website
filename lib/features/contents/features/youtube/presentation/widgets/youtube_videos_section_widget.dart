@@ -61,7 +61,8 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                     child: SizedBox(
                                       height: 150,
                                       child: ImageNetwork(
-                                        image: e.thumbnailUrl,
+                                        image:
+                                            "https://i3.ytimg.com/vi/${e.id}/maxresdefault.jpg",
                                         width: 300,
                                         height: 150,
                                         onTap: () => openVideo(e),

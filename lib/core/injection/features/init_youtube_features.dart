@@ -17,7 +17,6 @@ void initYoutubeFeatures() {
       id: "",
       title: "",
       description: "",
-      thumbnailUrl: "",
       publishedAt: DateTime.now(),
     ),
   );
@@ -26,7 +25,6 @@ void initYoutubeFeatures() {
         id: "",
         title: "",
         description: "",
-        thumbnailUrl: "",
         publishedAt: DateTime.now(),
       ));
 

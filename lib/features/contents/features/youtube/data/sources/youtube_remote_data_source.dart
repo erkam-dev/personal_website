@@ -24,9 +24,7 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
           path: playlistsUrl,
           queryParameters: {
             'part': 'snippet',
-            // 'channelId': const String.fromEnvironment(youtubeChannelId),
             'maxResults': '10',
-            // 'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {
@@ -50,7 +48,6 @@ class YoutubeRemoteDataSourceImpl implements YoutubeRemoteDataSource {
             'part': 'snippet',
             'playlistId': playlistId,
             'maxResults': '10',
-            // 'key': const String.fromEnvironment(youtubeApiKey),
           }),
     );
     if (response.statusCode == 200) {
