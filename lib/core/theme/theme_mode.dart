@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-ValueNotifier<ThemeMode> themeMode = ValueNotifier(ThemeMode.light);
+ValueNotifier<ThemeMode> themeMode = ValueNotifier(ThemeMode.system);
 
 themeModeSetter() {
   if (themeMode.value == ThemeMode.system) {
