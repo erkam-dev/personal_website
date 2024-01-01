@@ -11,6 +11,7 @@ const String playlistItemsUrl = "youtube/v3/playlistItems";
 
 // github
 const String githubHost = "github.com";
+const String rawGithubHost = "raw.githubusercontent.com";
 
 // figma
 const String figmaHost = "www.figma.com";
