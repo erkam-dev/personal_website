@@ -21,5 +21,6 @@ Future<void> init() async {
   // initExampleFeatures();
 }
 
+//TODO: migrate to Dio package
 initCore() async => sl.registerLazySingleton<Client>(
     () => InterceptedClient.build(interceptors: [CustomInterceptor()]));

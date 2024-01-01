@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-import '../../../features/features.dart';
+import '../../../features/example/example.dart';
 import '../injection_container.dart';
 
 void initExampleFeatures() {
