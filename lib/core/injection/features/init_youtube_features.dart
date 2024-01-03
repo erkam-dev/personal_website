@@ -1,15 +1,9 @@
-import 'package:http/http.dart';
-
 import '../../../features/features.dart';
 import '../injection_container.dart';
 
 void initYoutubeFeatures() {
   // Bloc
-  sl.registerFactory(() => YoutubeBloc(
-      youtubeVideos: [],
-      playlistIdList: [],
-      getPlaylistsUsecase: sl<GetPlaylistsUsecase>(),
-      getPlaylistItemsUsecase: sl<GetPlaylistItemsUsecase>()));
+  sl.registerFactory(() => YoutubeBloc(youtubeVideos: [], playlistIdList: []));
 
   // models
   sl.registerLazySingleton(
@@ -27,18 +21,4 @@ void initYoutubeFeatures() {
         description: "",
         publishedAt: DateTime.now(),
       ));
-
-  // Use cases
-  sl.registerLazySingleton(
-      () => GetPlaylistsUsecase(sl<YoutubeRepositoryImpl>()));
-  sl.registerLazySingleton(
-      () => GetPlaylistItemsUsecase(sl<YoutubeRepositoryImpl>()));
-
-  // Repository
-  sl.registerLazySingleton(() => YoutubeRepositoryImpl(
-      remoteDataSource: sl<YoutubeRemoteDataSourceImpl>()));
-
-  // Data sources
-  sl.registerLazySingleton(
-      () => YoutubeRemoteDataSourceImpl(client: sl<Client>()));
 }

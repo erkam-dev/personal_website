@@ -10,5 +10,3 @@ abstract class FigmaState extends Equatable {
 class FigmaInitial extends FigmaState {}
 
 class FigmaLoading extends FigmaState {}
-
-class FigmaRedirection extends FigmaState {}
