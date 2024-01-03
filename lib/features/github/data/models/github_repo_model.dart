@@ -1,13 +1,12 @@
 import 'package:personal_website/features/features.dart';
 
 class GithubRepoModel extends GithubRepo {
-  GithubRepoModel({
-    required super.title,
-    required super.description,
-    required super.thumbnailUrl,
-    required super.repoName,
-    required super.branch,
-  });
+  GithubRepoModel(
+      {super.title,
+      super.description,
+      super.thumbnailUrl,
+      super.repoName,
+      super.branch});
   factory GithubRepoModel.fromJson(Map<String, dynamic> json) {
     return GithubRepoModel(
       title: json['title'],

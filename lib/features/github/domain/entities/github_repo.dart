@@ -7,19 +7,13 @@ class GithubRepo extends Equatable {
   final String? repoName;
   final String? branch;
 
-  GithubRepo({
-    required this.title,
-    required this.description,
-    required this.thumbnailUrl,
-    required this.repoName,
-    required this.branch,
-  });
+  GithubRepo(
+      {this.title,
+      this.description,
+      this.thumbnailUrl,
+      this.repoName,
+      this.branch});
   @override
-  List<Object?> get props => [
-        title,
-        description,
-        thumbnailUrl,
-        repoName,
-        branch,
-      ];
+  List<Object?> get props =>
+      [title, description, thumbnailUrl, repoName, branch];
 }
