@@ -1,4 +1,4 @@
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/core.dart';
 
@@ -7,17 +7,18 @@ abstract class GithubRemoteDataSource {
 }
 
 class GithubRemoteDataSourceImpl implements GithubRemoteDataSource {
-  final Client client;
+  final Dio client;
 
   GithubRemoteDataSourceImpl({required this.client});
 
   @override
   Future getRawRepoFile(String filePath) async {
-    final response = await client
-        .get(Uri(scheme: httpsScheme, host: rawGithubHost, path: filePath));
+    final response = await client.get(
+        Uri(scheme: httpsScheme, host: rawGithubHost, path: filePath)
+            .toString());
     if (response.statusCode == 200) {
       // return value should be markdown string
-      return response.body;
+      return response.data;
     } else {
       throw ServerException();
     }
