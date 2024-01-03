@@ -7,15 +7,4 @@ abstract class YoutubeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetPlaylistItems extends YoutubeEvent {
-  final String playlistId;
-
-  const GetPlaylistItems({required this.playlistId});
-
-  @override
-  List<Object> get props => [playlistId];
-}
-
-class GetPlaylists extends YoutubeEvent {}
-
 class GetVideos extends YoutubeEvent {}
