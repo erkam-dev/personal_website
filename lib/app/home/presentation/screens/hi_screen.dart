@@ -15,7 +15,9 @@ class HiScreen extends StatelessWidget {
           FigmaDesignsSectionWidget(),
           SizedBox(height: 30),
           YoutubeVideosSectionWidget(),
-          SizedBox(height: 500),
+          SizedBox(height: 30),
+          GithubReposSectionWidget(),
+          SizedBox(height: 300),
         ],
       ),
     );
