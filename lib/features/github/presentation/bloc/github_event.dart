@@ -7,14 +7,13 @@ sealed class GithubEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetRawRepoFile extends GithubEvent {
-  final String repoName;
-  final String branchName;
+class GetRawReadmeFile extends GithubEvent {
+  final GithubRepo githubRepo;
 
-  GetRawRepoFile({required this.repoName, required this.branchName});
+  GetRawReadmeFile({required this.githubRepo});
 
   @override
-  List<Object> get props => [repoName, branchName];
+  List<Object> get props => [githubRepo];
 }
 
 class GetRepos extends GithubEvent {}

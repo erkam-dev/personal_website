@@ -15,6 +15,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => sl<FigmaBloc>()),
         BlocProvider(create: (context) => sl<YoutubeBloc>()),
+        BlocProvider(create: (context) => sl<GithubBloc>()),
       ],
       child: ValueListenableBuilder(
         valueListenable: themeMode,

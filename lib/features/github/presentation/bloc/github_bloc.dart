@@ -22,18 +22,18 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
       emit(GithubLoading());
       String data = await sl<FirebaseRemoteConfig>().getString(githubDataKey);
       try {
-        github = GithubModel.fromJson(jsonDecode(data));
+        github = await GithubModel.fromJson(jsonDecode(data));
       } on FormatException {
         debugPrint(data);
       }
       emit(GithubInitial());
     });
-    on<GetRawRepoFile>((event, emit) async {
+    on<GetRawReadmeFile>((event, emit) async {
       emit(GithubLoading());
       readmeContent = null;
       final failureOrValue = await getRawRepoFileUsecase(GetRawRepoFileParams(
           filePath:
-              "https://raw.githubusercontent.com/${github.username}/${event.repoName}/${event.branchName}/README.md"));
+              "https://raw.githubusercontent.com/${github.username}/${event.githubRepo.repoName}/${event.githubRepo.branch}/README.md"));
       failureOrValue.fold((l) => emit(GithubInitial()),
           (r) => {readmeContent = r, emit(GithubInitial())});
       emit(GithubInitial());

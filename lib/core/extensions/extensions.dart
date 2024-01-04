@@ -9,4 +9,5 @@ export 'gesture_extension.dart';
 export 'navigation_extension.dart';
 export 'padding_extension.dart';
 export 'popup_extension.dart';
+export 'string_extension.dart';
 export 'transform_extension.dart';

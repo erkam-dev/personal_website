@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:personal_website/features/features.dart';
 
 class GithubModel extends Github {
   GithubModel({required super.username, required super.repos});
   factory GithubModel.fromJson(Map<String, dynamic> json) {
-    List repoData = jsonDecode(json['repos']) ?? [];
+    List repoData = json['repos'] ?? [];
     List<GithubRepo> repos =
         repoData.map((e) => GithubRepoModel.fromJson(e)).toList();
     return GithubModel(username: json['username'], repos: repos);
