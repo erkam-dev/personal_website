@@ -22,9 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     FigmaBloc figmaBloc = BlocProvider.of<FigmaBloc>(context);
     YoutubeBloc youtubeBloc = BlocProvider.of<YoutubeBloc>(context);
+    GithubBloc githubBloc = BlocProvider.of<GithubBloc>(context);
     Future.microtask(() => {
           figmaBloc.add(GetProjectFiles()),
           youtubeBloc.add(GetVideos()),
+          githubBloc.add(GetRepos()),
         });
   }
 
