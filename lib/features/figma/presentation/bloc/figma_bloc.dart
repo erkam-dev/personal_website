@@ -19,7 +19,7 @@ class FigmaBloc extends Bloc<FigmaEvent, FigmaState> {
       emit(FigmaLoading());
       List filesList = [];
       List<FigmaFile> result = [];
-      String data = await sl<FirebaseRemoteConfig>().getString(figmaDataKey);
+      String data = sl<FirebaseRemoteConfig>().getString(figmaDataKey);
       if (data.isNotEmpty) {
         try {
           filesList = json.decode(data)['files'];

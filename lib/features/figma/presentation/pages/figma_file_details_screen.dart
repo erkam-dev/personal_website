@@ -41,8 +41,8 @@ class FigmaFileDetailsScreen extends StatelessWidget {
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
                             "https://www.figma.com/community/file/${figmaFile.key}")),
-                        icon: Icon(Icons.open_in_new_rounded),
-                        label: Text("Open in new tab"),
+                        icon: const Icon(Icons.open_in_new_rounded),
+                        label: const Text("Open in new tab"),
                       ).padOnly(right: 16)
                     ],
                   ),

@@ -5,7 +5,7 @@ import 'app/app_config.dart';
 
 void main() async {
   ErrorWidget.builder = (FlutterErrorDetails details) =>
-      const Text("Something Went Wrong!").pad16().card();
+      const Text("Something Went Wrong!").centerWidget().pad16().card();
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   runApp(const App());

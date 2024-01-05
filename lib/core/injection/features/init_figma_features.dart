@@ -7,14 +7,14 @@ void initFigmaFeatures() {
 
   // models
   sl.registerLazySingleton(
-    () => FigmaFileModel(
+    () => const FigmaFileModel(
       key: "",
       name: "",
       thumbnailUrl: "",
     ),
   );
   // entities
-  sl.registerLazySingleton(() => FigmaFile(
+  sl.registerLazySingleton(() => const FigmaFile(
         key: "",
         name: "",
         thumbnailUrl: "",

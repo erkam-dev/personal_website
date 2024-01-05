@@ -57,8 +57,8 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
                             "https://www.github.com/${githubBloc.github.username}/${widget.githubRepo.repoName}")),
-                        icon: Icon(Icons.open_in_new_rounded),
-                        label: Text("Open in new tab"),
+                        icon: const Icon(Icons.open_in_new_rounded),
+                        label: const Text("Open in new tab"),
                       ).padOnly(right: 16)
                     ],
                   ),
