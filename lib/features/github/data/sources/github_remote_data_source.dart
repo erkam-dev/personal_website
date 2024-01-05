@@ -16,15 +16,12 @@ class GithubRemoteDataSourceImpl implements GithubRemoteDataSource {
   Future getRawRepoFile(String filePath) async {
     late Response response;
     try {
-      response = await client.get(
-          Uri(scheme: httpsScheme, host: rawGithubHost, path: filePath)
-              .toString());
+      response = await client.get(filePath);
     } catch (e) {
       debugPrint(e.toString());
       throw ServerException();
     }
     if (response.statusCode == 200) {
-      // return value should be markdown string
       return response.data;
     } else {
       throw ServerException();

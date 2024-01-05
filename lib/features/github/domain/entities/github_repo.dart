@@ -7,7 +7,7 @@ class GithubRepo extends Equatable {
   final String? repoName;
   final String? branch;
 
-  GithubRepo(
+  const GithubRepo(
       {this.title,
       this.description,
       this.thumbnailUrl,

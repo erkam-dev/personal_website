@@ -23,7 +23,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                   launchUrl(Uri.parse('https://www.figma.com/@erkam_dev')),
               title: Text("Figma Designs",
                   style: Theme.of(context).textTheme.titleLarge),
-              trailing: Icon(Icons.navigate_next_rounded),
+              trailing: const Icon(Icons.navigate_next_rounded),
             ),
           ),
           SizedBox(

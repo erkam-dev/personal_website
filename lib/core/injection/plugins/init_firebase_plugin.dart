@@ -7,8 +7,8 @@ import 'package:personal_website/firebase_options.dart';
 initFirebasePlugin() async {
   // Setups
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseRemoteConfig remoteConfig = await FirebaseRemoteConfig.instance;
-  FirebaseAnalytics analytics = await FirebaseAnalytics.instance;
+  FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   sl.registerLazySingleton<FirebaseRemoteConfig>(() => remoteConfig);
   sl.registerLazySingleton<FirebaseAnalytics>(() => analytics);
   // Remote Config
@@ -19,5 +19,4 @@ initFirebasePlugin() async {
   ));
   await sl<FirebaseRemoteConfig>().setDefaults(remoteConfigDefaults);
   await sl<FirebaseRemoteConfig>().fetchAndActivate();
-  ;
 }

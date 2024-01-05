@@ -8,7 +8,7 @@ class HelloHeroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       title: Text(
         "Hi, I’m Erkam. Welcome!",
         style: Theme.of(context)

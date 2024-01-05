@@ -21,7 +21,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                 launchUrl(Uri.parse('https://www.github.com/erkam-dev')),
             title: Text("Github Repos",
                 style: Theme.of(context).textTheme.titleLarge),
-            trailing: Icon(Icons.navigate_next_rounded),
+            trailing: const Icon(Icons.navigate_next_rounded),
           ).pad32(vertical: false),
           (state.runtimeType == GithubLoading)
               ? const Center(child: CircularProgressIndicator())

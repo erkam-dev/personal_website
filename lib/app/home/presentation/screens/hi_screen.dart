@@ -8,7 +8,7 @@ class HiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageLayoutScheme(
+    return const PageLayoutScheme(
       child: Column(
         children: [
           HelloHeroWidget(),

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../lib.dart';
 
@@ -20,9 +20,9 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
   }) : super(GithubInitial()) {
     on<GetRepos>((event, emit) async {
       emit(GithubLoading());
-      String data = await sl<FirebaseRemoteConfig>().getString(githubDataKey);
+      String data = sl<FirebaseRemoteConfig>().getString(githubDataKey);
       try {
-        github = await GithubModel.fromJson(jsonDecode(data));
+        github = GithubModel.fromJson(jsonDecode(data));
       } on FormatException {
         debugPrint(data);
       }
@@ -31,11 +31,15 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
     on<GetRawReadmeFile>((event, emit) async {
       emit(GithubLoading());
       readmeContent = null;
-      final failureOrValue = await getRawRepoFileUsecase(GetRawRepoFileParams(
+      final failureOrValue = await getRawRepoFileUsecase(const GetRawRepoFileParams(
           filePath:
-              "https://raw.githubusercontent.com/${github.username}/${event.githubRepo.repoName}/${event.githubRepo.branch}/README.md"));
-      failureOrValue.fold((l) => emit(GithubInitial()),
-          (r) => {readmeContent = r, emit(GithubInitial())});
+              "https://cdn.jsdelivr.net/gh/erkam-dev/tick-to-do@master/README.md"));
+      failureOrValue.fold(
+          (l) => emit(GithubInitial()),
+          (r) => {
+                readmeContent = r,
+                emit(GithubInitial()),
+              });
       emit(GithubInitial());
     });
   }
