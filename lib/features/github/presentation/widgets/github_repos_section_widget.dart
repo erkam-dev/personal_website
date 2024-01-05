@@ -36,8 +36,10 @@ class GithubReposSectionWidget extends StatelessWidget {
                         context,
                         HeroDialogRoute(
                             fullscreenDialog: true,
-                            builder: (context) =>
-                                GithubRepoDetailsScreen(githubRepo: e)));
+                            builder: (context) => BlocProvider.value(
+                                value: githubBloc,
+                                child:
+                                    GithubRepoDetailsScreen(githubRepo: e))));
                     return Hero(
                       tag: e,
                       child: Card(
