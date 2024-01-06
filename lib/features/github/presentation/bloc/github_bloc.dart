@@ -31,9 +31,9 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
     on<GetRawReadmeFile>((event, emit) async {
       emit(GithubLoading());
       readmeContent = null;
-      final failureOrValue = await getRawRepoFileUsecase(const GetRawRepoFileParams(
+      final failureOrValue = await getRawRepoFileUsecase(GetRawRepoFileParams(
           filePath:
-              "https://cdn.jsdelivr.net/gh/erkam-dev/tick-to-do@master/README.md"));
+              "https://cdn.jsdelivr.net/gh/${github.username}/${event.githubRepo.repoName}@${event.githubRepo.branch}/README.md"));
       failureOrValue.fold(
           (l) => emit(GithubInitial()),
           (r) => {
