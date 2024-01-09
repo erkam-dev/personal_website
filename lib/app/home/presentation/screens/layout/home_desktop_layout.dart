@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/core.dart';
-import '../../../data/constants/home_page_data.dart';
-import 'layout.dart';
+import '../../../../app.dart';
 
 // ignore: must_be_immutable
 class HomeDesktopLayout extends StatefulWidget {
