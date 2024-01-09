@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,9 +51,7 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                       ),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text((widget.githubRepo.repoName ?? "")
-                        .replaceAll("-", " ")
-                        .capitalizeEveryWordsFirstChar()),
+                    title: Text((widget.githubRepo.title ?? "")),
                     actions: [
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
@@ -64,7 +63,10 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                   ),
                   body: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Card(child: Text(githubBloc.readmeContent ?? "")),
+                    child: Card(
+                        // TODO: convert markdown widget to extension.
+                        // TODO: add ImageNetwork widget to Markdown Extension
+                        child: Markdown(data: githubBloc.readmeContent ?? "")),
                   ),
                 ),
               ),
