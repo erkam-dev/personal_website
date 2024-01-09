@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/common_widgets/common_widgets.dart';
-import 'package:personal_website/core/constants/layout_breakpoints.dart';
+
+import '../../../../../lib.dart';
 
 class PageLayoutScheme extends StatelessWidget {
   final Widget child;

@@ -64,9 +64,14 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                   body: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Card(
-                        // TODO: convert markdown widget to extension.
-                        // TODO: add ImageNetwork widget to Markdown Extension
-                        child: Markdown(data: githubBloc.readmeContent ?? "")),
+                        child: BlocBuilder(
+                            bloc: githubBloc,
+                            builder: (context, state) => Markdown(
+                                // imageBuilder: (uri, title, alt) =>
+                                // ImageNetwork(image: uri.toString()),
+                                // TODO: convert markdown widget to extension.
+                                // TODO: add ImageNetwork widget to Markdown Extension
+                                data: githubBloc.readmeContent ?? ""))),
                   ),
                 ),
               ),
