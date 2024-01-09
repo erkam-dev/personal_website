@@ -60,9 +60,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                                   )),
                               ListTile(
                                 title: Text(
-                                  (e.repoName ?? "")
-                                      .replaceAll("-", " ")
-                                      .capitalizeEveryWordsFirstChar(),
+                                  (e.title ?? ""),
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                   maxLines: 1,
