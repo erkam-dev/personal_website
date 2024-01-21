@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:personal_website/core/core.dart';
+import 'package:personal_website/core/extensions/layout_extension.dart';
 import 'package:personal_website/features/features.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,7 +15,7 @@ class GithubReposSectionWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: githubBloc,
       builder: (context, state) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
             onTap: () =>
@@ -81,7 +82,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                   }).toList(),
                 ).sizedBox(height: 240),
         ],
-      ),
+      ).maxDesktopWidth(),
     );
   }
 }

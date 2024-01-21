@@ -22,7 +22,7 @@ class App extends StatelessWidget {
         builder: (context, value, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           scrollBehavior: const CupertinoScrollBehavior(),
-          themeMode: value,
+          themeMode: ThemeMode.light,
           navigatorKey: NavigationService.navigatorKey,
           theme: lightTheme(),
           darkTheme: darkTheme(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/core/core.dart';
+import 'package:personal_website/core/extensions/layout_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../presentation.dart';
@@ -14,7 +15,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: figmaBloc,
       builder: (context, state) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -85,7 +86,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                   ),
           ),
         ],
-      ),
+      ).maxDesktopWidth(),
     );
   }
 }
