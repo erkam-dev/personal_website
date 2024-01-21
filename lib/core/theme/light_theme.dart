@@ -4,15 +4,14 @@ ThemeData lightTheme() {
   return ThemeData(
     fontFamily: "Product Sans",
     brightness: Brightness.light,
-    useMaterial3: true,
     colorSchemeSeed: const Color(0xFF6943C9),
     listTileTheme: ListTileThemeData(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
     ),
     cardTheme: CardTheme(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(24),
       ),
     ),
   );
