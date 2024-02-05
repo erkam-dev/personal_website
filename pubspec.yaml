@@ -39,6 +39,9 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/thumbnails/
+    - assets/images/screenshots/tg/
+    - assets/images/screenshots/decisionai/
 
   fonts:
     - family: Product Sans
