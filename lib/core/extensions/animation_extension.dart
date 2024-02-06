@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/common_widgets/bouncy_animation_widget.dart';
 
 extension AnimationExtension on Widget {
-  AnimatedSize animatedSize({Duration? duration}) => AnimatedSize(
+  AnimatedSize animatedSize(
+          {Duration? duration,
+          AlignmentGeometry alignment = Alignment.center}) =>
+      AnimatedSize(
         duration: duration ?? const Duration(milliseconds: 300),
+        alignment: alignment,
         curve: Curves.easeOutCubic,
         child: this,
       );

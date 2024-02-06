@@ -11,6 +11,8 @@ extension ContainerExtension on Widget {
       Visibility(visible: visible ?? true, child: this);
   Offstage offstage([bool? offstage]) =>
       Offstage(offstage: offstage ?? true, child: this);
+  AspectRatio aspectRatio(double aspectRatio) =>
+      AspectRatio(aspectRatio: aspectRatio, child: this);
   Card card({
     Key? key,
     Color? color,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/core/constants/layout_breakpoints.dart';
+import 'package:personal_website/core/core.dart';
 
 extension LayoutExtension on Widget {
   LayoutBuilder maxDesktopWidth() => LayoutBuilder(
