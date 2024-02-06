@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/app/app_config.dart';
 import 'package:personal_website/core/core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../features/features.dart';
 import '../../home.dart';
@@ -16,7 +17,15 @@ class HomeScreen extends StatefulWidget {
 final globalContext = NavigationService.navigatorKey.currentContext!;
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool showLabel = true;
+  bool lastPage = false;
   PageController controller = PageController();
+  List<Widget> pages = [
+    const HelloHeroWidget(),
+    const ProductsWidget(),
+    const ContentsWidget(),
+    const AboutMeWidget()
+  ];
   @override
   void initState() {
     super.initState();
@@ -51,13 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const SizedBox().blurBackground(16),
             actions: [
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () => launchUrl(Uri.parse("mailto:info@erkam.dev")),
                 child: Text(
                   "Contact Me",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ).colorFiltered(Colors.white).padOnly(right: 8)
             ],
@@ -66,18 +72,31 @@ class _HomeScreenState extends State<HomeScreen> {
             scrolledUnderElevation: 0,
           ),
           body: PageView(
+            onPageChanged: (value) => setState(() =>
+                {showLabel = value == 0, lastPage = value == pages.length - 1}),
             controller: controller,
             scrollDirection: Axis.vertical,
-            children: [
-              HelloHeroWidget(
+            children: pages,
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: lastPage
+              ? null
+              : ElevatedButton(
                   onPressed: () => controller.nextPage(
                       duration: context.durationMilliseconds300(),
-                      curve: Curves.ease)),
-              const FigmaDesignsSectionWidget(),
-              const YoutubeVideosSectionWidget(),
-              const GithubReposSectionWidget(),
-            ],
-          ),
+                      curve: Curves.ease),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    const Icon(Icons.arrow_downward_rounded),
+                    Text(
+                      showLabel ? " Explore" : "",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ).animatedSize(alignment: Alignment.centerLeft),
+                  ]).pad4(),
+                ).padOnly(bottom: 24),
         )
       ],
     );

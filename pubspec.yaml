@@ -20,6 +20,7 @@ dependencies:
   flutter_markdown: ^0.6.18+3
   flutter_svg: ^2.0.5
   get_it: ^7.3.0
+  google_fonts: ^4.0.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   html: ^0.15.3
@@ -40,13 +41,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images/thumbnails/
+    - assets/images/icons/
     - assets/images/screenshots/tg/
     - assets/images/screenshots/decisionai/
-
-  fonts:
-    - family: Product Sans
-      fonts:
-        - asset: assets/font/product-sans-bold-italic.ttf
-        - asset: assets/font/product-sans-italic.ttf
-        - asset: assets/font/product-sans-bold.ttf
-        - asset: assets/font/product-sans-regular.ttf
