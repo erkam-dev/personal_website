@@ -4,6 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData lightTheme() {
   return ThemeData(
       brightness: Brightness.light,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       colorSchemeSeed: const Color(0xFF6943C9),
       listTileTheme: ListTileThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/app/app_config.dart';
-import 'package:personal_website/core/core.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../features/features.dart';
-import '../../home.dart';
+import '../../../../lib.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController controller = PageController();
   List<Widget> pages = [
     const HelloHeroWidget(),
-    const ProductsWidget(),
+    const PortfolioWidget(),
     const ContentsWidget(),
     const AboutMeWidget()
   ];
@@ -40,6 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -53,25 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             end: Alignment.bottomRight,
           )),
         ),
-        Scaffold(
-          extendBodyBehindAppBar: true,
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            title: const SizedBox().blurBackground(16),
-            actions: [
-              OutlinedButton(
-                onPressed: () => launchUrl(Uri.parse("mailto:info@erkam.dev")),
-                child: Text(
-                  "Contact Me",
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ).colorFiltered(Colors.white).padOnly(right: 8)
-            ],
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-          ),
+        CustomScaffold(
           body: PageView(
+            pageSnapping: false,
             onPageChanged: (value) => setState(() =>
                 {showLabel = value == 0, lastPage = value == pages.length - 1}),
             controller: controller,

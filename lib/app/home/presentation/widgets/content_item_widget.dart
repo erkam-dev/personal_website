@@ -39,8 +39,8 @@ class ContentItemWidget extends StatelessWidget {
                     )
                   : ImageNetwork(
                       image: imagePath,
-                      height: 180,
                       width: 320,
+                      height: 180,
                       fullScreen: true,
                     ))
               .aspectRatio(16 / 9),

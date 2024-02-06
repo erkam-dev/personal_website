@@ -3,8 +3,8 @@ import 'package:personal_website/app/app.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:personal_website/core/extensions/layout_extension.dart';
 
-class ProductsWidget extends StatelessWidget {
-  const ProductsWidget({super.key});
+class PortfolioWidget extends StatelessWidget {
+  const PortfolioWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ProductsWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Products",
+          "Portfolio",
           style: Theme.of(context)
               .textTheme
               .headlineSmall!
