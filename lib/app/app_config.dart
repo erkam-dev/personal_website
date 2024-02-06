@@ -28,7 +28,6 @@ class App extends StatelessWidget {
             scrollbars: false,
           ),
           themeMode: ThemeMode.light,
-          navigatorKey: NavigationService.navigatorKey,
           theme: lightTheme(),
           darkTheme: darkTheme(),
           home: const HomeScreen(),
@@ -36,8 +35,4 @@ class App extends StatelessWidget {
       ),
     );
   }
-}
-
-class NavigationService {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/app/app.dart';
+import 'package:personal_website/app/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:personal_website/core/extensions/layout_extension.dart';
 
@@ -18,7 +19,7 @@ class PortfolioWidget extends StatelessWidget {
               .headlineSmall!
               .copyWith(color: Colors.white),
         ).padOnly(bottom: 16),
-        const SingleChildScrollView(
+        SingleChildScrollView(
           child: Wrap(
             alignment: WrapAlignment.spaceBetween,
             spacing: 32,
@@ -29,8 +30,12 @@ class PortfolioWidget extends StatelessWidget {
                 title: "TeklifimGelsin",
                 description: "Personalized Financial Market Place & Assistant",
                 width: 400,
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PortfolioScreen())),
               ),
-              ContentItemWidget(
+              const ContentItemWidget(
                 imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
                 title: "Decision AI",
                 description: "Making the decision-making process a breeze",
