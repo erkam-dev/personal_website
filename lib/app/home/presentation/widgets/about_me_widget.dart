@@ -121,7 +121,7 @@ I'm excited to see what the future holds for me. I'm confident that I can use my
             children: icons
                 .map(
                   (e) => Image.asset(
-                    "assets/images/icons/${e.imagePath}.webp",
+                    "assets/images/icons/socials/${e.imagePath}.webp",
                     height: 32,
                     width: 32,
                     color: Theme.of(context).colorScheme.primary,

@@ -42,5 +42,7 @@ flutter:
     - assets/images/
     - assets/images/thumbnails/
     - assets/images/icons/
+    - assets/images/icons/app/
+    - assets/images/icons/socials/
     - assets/images/screenshots/tg/
     - assets/images/screenshots/decisionai/

@@ -66,7 +66,14 @@ class CustomScaffold extends StatelessWidget {
         Scaffold(
           appBar: appBar ??
               AppBar(
-                title: SizedBox(child: title != null ? Text(title!) : null)
+                title: SizedBox(
+                        child:
+                            (title ?? "").isEmpty && Navigator.canPop(context)
+                                ? TextButton(
+                                    child: const Text("Return to Exploration"),
+                                    onPressed: () => context.popWhenPoppable(),
+                                  )
+                                : Text(title ?? ""))
                     .blurBackground(),
                 actions: [
                   OutlinedButton(
@@ -79,7 +86,7 @@ class CustomScaffold extends StatelessWidget {
                   ).colorFiltered(Colors.white).padOnly(right: 8)
                 ],
               ),
-          backgroundColor: backgroundColor,
+          backgroundColor: backgroundColor ?? Colors.transparent,
           body: body,
           bottomNavigationBar: bottomNavigationBar,
           bottomSheet: bottomSheet,

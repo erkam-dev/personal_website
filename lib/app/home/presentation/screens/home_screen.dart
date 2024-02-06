@@ -10,8 +10,6 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-final globalContext = NavigationService.navigatorKey.currentContext!;
-
 class _HomeScreenState extends State<HomeScreen> {
   bool showLabel = true;
   bool lastPage = false;
@@ -43,48 +41,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [Color(0xFF86a1ff), Color(0xFFaf89ff)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )),
-        ),
-        CustomScaffold(
-          body: PageView(
-            pageSnapping: false,
-            onPageChanged: (value) => setState(() =>
-                {showLabel = value == 0, lastPage = value == pages.length - 1}),
-            controller: controller,
-            scrollDirection: Axis.vertical,
-            children: pages,
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: lastPage
-              ? null
-              : ElevatedButton(
-                  onPressed: () => controller.nextPage(
-                      duration: context.durationMilliseconds300(),
-                      curve: Curves.ease),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    const Icon(Icons.arrow_downward_rounded),
-                    Text(
-                      showLabel ? " Explore" : "",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ).animatedSize(alignment: Alignment.centerLeft),
-                  ]).pad4(),
-                ).padOnly(bottom: 24),
-        )
-      ],
+    return CustomScaffold(
+      body: PageView(
+        pageSnapping: false,
+        onPageChanged: (value) => setState(() =>
+            {showLabel = value == 0, lastPage = value == pages.length - 1}),
+        controller: controller,
+        scrollDirection: Axis.vertical,
+        children: pages,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: lastPage
+          ? null
+          : ElevatedButton(
+              onPressed: () => controller.nextPage(
+                  duration: context.durationMilliseconds300(),
+                  curve: Curves.ease),
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                const Icon(Icons.arrow_downward_rounded),
+                Text(
+                  showLabel ? " Explore" : "",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ).animatedSize(alignment: Alignment.centerLeft),
+              ]).pad4(),
+            ).padOnly(bottom: 24),
     );
   }
 }
