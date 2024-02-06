@@ -135,7 +135,7 @@ I'm excited to see what the future holds for me. I'm confident that I can use my
                       ),
                 )
                 .toList(),
-          ).expanded(),
+          ),
         ),
         Text(
           "Powered by Flutter",
