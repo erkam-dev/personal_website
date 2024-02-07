@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_network/image_network.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:personal_website/core/extensions/layout_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../youtube.dart';
@@ -61,12 +59,10 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                         .surfaceVariant,
                                     child: SizedBox(
                                       height: 150,
-                                      child: ImageNetwork(
-                                        image:
-                                            "https://i3.ytimg.com/vi/${e.id}/maxresdefault.jpg",
+                                      child: Image.network(
+                                        "https://i3.ytimg.com/vi/${e.id}/maxresdefault.jpg",
                                         width: 300,
                                         height: 150,
-                                        onTap: () => openVideo(e),
                                       ),
                                     )),
                                 Padding(

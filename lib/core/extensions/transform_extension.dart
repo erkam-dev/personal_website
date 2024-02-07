@@ -5,6 +5,6 @@ extension TransformExtension on Widget {
       Transform.flip(flipY: y ?? false, flipX: x ?? false, child: this);
   Transform rotate([double? angle]) =>
       Transform.rotate(angle: angle ?? 0, child: this);
-  Transform scale({double? scale}) =>
+  Transform scale([double? scale]) =>
       Transform.scale(scale: scale ?? 0, child: this);
 }

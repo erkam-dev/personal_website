@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:personal_website/core/extensions/layout_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutMeWidget extends StatelessWidget {

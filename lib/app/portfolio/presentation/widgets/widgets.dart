@@ -1,3 +1,4 @@
+export 'highlights_item_widget.dart';
 export 'portfolio_hero_widget.dart';
 export 'portfolio_highlights_widget.dart';
 export 'portfolio_more_explanation_widget.dart';

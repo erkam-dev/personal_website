@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/lib.dart';
 
 extension ContainerExtension on Widget {
   SizedBox sizedBox({double? height, double? width}) =>
@@ -37,5 +38,34 @@ extension ContainerExtension on Widget {
         clipBehavior: clipBehavior,
         semanticContainer: semanticContainer,
         child: this,
+      );
+  Card customCard({
+    BorderRadius? borderRadius,
+    double? blur,
+    Key? key,
+    Color? color,
+    Color? shadowColor,
+    Color? surfaceTintColor,
+    double? elevation,
+    bool borderOnForeground = true,
+    EdgeInsetsGeometry? margin,
+    Clip? clipBehavior,
+    bool semanticContainer = true,
+  }) =>
+      Card(
+        key: key,
+        shape: RoundedRectangleBorder(
+            borderRadius: borderRadius ?? BorderRadius.circular(16),
+            side: BorderSide(
+                width: 1, color: const Color(0xFFE8DDFF).withOpacity(0.5))),
+        color: color ?? Colors.white54,
+        shadowColor: shadowColor,
+        surfaceTintColor: surfaceTintColor,
+        elevation: elevation,
+        borderOnForeground: borderOnForeground,
+        margin: margin,
+        clipBehavior: clipBehavior,
+        semanticContainer: semanticContainer,
+        child: blurBackgroundWithClip(blur: blur),
       );
 }

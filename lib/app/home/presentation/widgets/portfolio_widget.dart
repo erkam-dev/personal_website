@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/app/app.dart';
-import 'package:personal_website/app/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:personal_website/core/extensions/layout_extension.dart';
 
 class PortfolioWidget extends StatelessWidget {
   const PortfolioWidget({super.key});
@@ -22,14 +20,12 @@ class PortfolioWidget extends StatelessWidget {
         SingleChildScrollView(
           child: Wrap(
             alignment: WrapAlignment.spaceBetween,
-            spacing: 32,
-            runSpacing: 16,
             children: [
               ContentItemWidget(
                 imagePath: "assets/images/thumbnails/tg_thumbnail.png",
                 title: "TeklifimGelsin",
                 description: "Personalized Financial Market Place & Assistant",
-                width: 400,
+                width: 600,
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -39,14 +35,14 @@ class PortfolioWidget extends StatelessWidget {
                 imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
                 title: "Decision AI",
                 description: "Making the decision-making process a breeze",
-                width: 400,
+                width: 600,
               ),
             ],
           ),
         )
             .constrainedBox(
               BoxConstraints(
-                  maxHeight: MediaQuery.sizeOf(context).height - 180),
+                  maxHeight: MediaQuery.sizeOf(context).height - 150),
             )
             .roundBorder24(),
       ],

@@ -6,6 +6,7 @@ export 'container_extension.dart';
 export 'duration_extension.dart';
 export 'expand_flex_extension.dart';
 export 'gesture_extension.dart';
+export 'layout_extension.dart';
 export 'navigation_extension.dart';
 export 'padding_extension.dart';
 export 'popup_extension.dart';
