@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:image_network/image_network.dart';
-import 'package:personal_website/core/core.dart';
+
+import '../../../../lib.dart';
 
 class ContentItemWidget extends StatelessWidget {
   final String imagePath;
@@ -32,18 +32,11 @@ class ContentItemWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          (imagePath.startsWith("assets")
-                  ? Image.asset(
-                      imagePath,
-                      fit: BoxFit.cover,
-                    )
-                  : ImageNetwork(
-                      image: imagePath,
-                      width: 320,
-                      height: 180,
-                      fullScreen: true,
-                    ))
-              .aspectRatio(16 / 9),
+          SmartImageWidget(
+            imagePath: imagePath,
+            width: width,
+            height: height,
+          ).aspectRatio(2),
           Row(
             children: [
               Column(
@@ -66,9 +59,9 @@ class ContentItemWidget extends StatelessWidget {
               ).expanded(),
               const Icon(Icons.navigate_next_rounded)
             ],
-          ).pad8(),
+          ).pad16(),
         ],
-      ),
-    ).sizedBox(width: width ?? 320, height: height).inkwell(onTap);
+      ).inkwell(onTap),
+    ).sizedBox(width: width ?? 480);
   }
 }

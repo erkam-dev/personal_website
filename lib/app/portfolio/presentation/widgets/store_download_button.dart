@@ -16,27 +16,41 @@ class StoreDownloadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(storeType == StoreType.appstore
-            ? "assets/images/icons/apple.png"
-            : storeType == StoreType.playstore
-                ? "assets/images/icons/play.png"
-                : ""),
-        Column(
-          children: [
-            const Text("Download on the"),
-            Text(storeType == StoreType.appstore
-                ? "App Store"
+                ? "assets/images/icons/apple.png"
                 : storeType == StoreType.playstore
-                    ? "Google Play"
-                    : ""),
+                    ? "assets/images/icons/play.png"
+                    : "")
+            .squareBox(20)
+            .padOnly(right: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Download on the",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(height: 1),
+            ),
+            Text(
+              storeType == StoreType.appstore
+                  ? "App Store"
+                  : storeType == StoreType.playstore
+                      ? "Google Play"
+                      : "",
+              style:
+                  Theme.of(context).textTheme.titleSmall!.copyWith(height: 1),
+            ),
           ],
-        )
+        ).colorFiltered(Theme.of(context).colorScheme.primary)
       ],
     ).pad8().inkwell(() {
       if ((redirectionUrl ?? "").isNotEmpty) {
         launchUrl(Uri.parse(redirectionUrl!));
       }
-    }).card();
+    }).customCard(
+      borderRadius: context.borderRadius8(),
+      margin: EdgeInsets.zero,
+    );
   }
 }

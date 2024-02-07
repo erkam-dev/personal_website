@@ -66,24 +66,41 @@ class CustomScaffold extends StatelessWidget {
         Scaffold(
           appBar: appBar ??
               AppBar(
+                automaticallyImplyLeading: false,
                 title: SizedBox(
-                        child:
-                            (title ?? "").isEmpty && Navigator.canPop(context)
-                                ? TextButton(
-                                    child: const Text("Return to Exploration"),
-                                    onPressed: () => context.popWhenPoppable(),
-                                  )
-                                : Text(title ?? ""))
-                    .blurBackground(),
+                    child: (title ?? "").isEmpty && Navigator.canPop(context)
+                        ? TextButton.icon(
+                            icon: Icon(
+                              Icons.navigate_before_rounded,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            label: Text(
+                              "Back",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                            ),
+                            onPressed: () => context.popWhenPoppable(),
+                          ).customCard()
+                        : Text(title ?? "")),
                 actions: [
-                  OutlinedButton(
-                    onPressed: () =>
-                        launchUrl(Uri.parse("mailto:info@erkam.dev")),
-                    child: Text(
-                      "Contact Me",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ).colorFiltered(Colors.white).padOnly(right: 8)
+                  Text(
+                    "Contact Me",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: Theme.of(context).colorScheme.primary),
+                  )
+                      .inkwell(
+                          () => launchUrl(Uri.parse("mailto:info@erkam.dev")))
+                      .pad8(vertical: false)
+                      .customCard()
+                      .padOnly(right: 8)
                 ],
               ),
           backgroundColor: backgroundColor ?? Colors.transparent,

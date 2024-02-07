@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:personal_website/core/extensions/layout_extension.dart';
 
 class HelloHeroWidget extends StatelessWidget {
   const HelloHeroWidget({super.key});

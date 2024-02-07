@@ -15,7 +15,7 @@ extension ColorFilterMaskExtension on Widget {
         child: this,
       );
   BackdropFilter blurBackground([double? blur]) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blur ?? 2, sigmaY: blur ?? 2),
+        filter: ImageFilter.blur(sigmaX: blur ?? 8, sigmaY: blur ?? 8),
         child: this,
       );
   Widget blurBackgroundWithClip({double? blur, double? borderRadius}) =>

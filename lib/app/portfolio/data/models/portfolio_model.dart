@@ -1,39 +1,16 @@
-import 'package:equatable/equatable.dart';
+import 'package:personal_website/app/portfolio/domain/entities/portfolio.dart';
 
-class PortfolioModel extends Equatable {
-  final String? title;
-  final String? description;
-  final Map<String, String>? redirectionUrls;
-  final Map<String, String>? highlights;
-  final List<String>? screenshots;
-  final String? projectStructureTitle;
-  final String? projectStructureText;
-  final String? myJourneyTitle;
-  final String? myJourneyText;
-
-  const PortfolioModel({
-    this.title,
-    this.description,
-    this.redirectionUrls,
-    this.highlights,
-    this.screenshots,
-    this.projectStructureTitle,
-    this.projectStructureText,
-    this.myJourneyTitle,
-    this.myJourneyText,
-  });
-  @override
-  List<Object?> get props => [
-        title,
-        description,
-        redirectionUrls,
-        highlights,
-        screenshots,
-        projectStructureTitle,
-        projectStructureText,
-        myJourneyTitle,
-        myJourneyText,
-      ];
+class PortfolioModel extends Portfolio {
+  const PortfolioModel(
+      {required super.title,
+      required super.description,
+      required super.redirectionUrls,
+      required super.highlights,
+      required super.screenshots,
+      required super.projectStructureTitle,
+      required super.projectStructureText,
+      required super.myJourneyTitle,
+      required super.myJourneyText});
   factory PortfolioModel.fromJson(Map<String, dynamic> json) {
     return PortfolioModel(
       title: json['title'],

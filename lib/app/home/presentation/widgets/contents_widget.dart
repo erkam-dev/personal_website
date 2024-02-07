@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/app/home/home.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:personal_website/core/extensions/layout_extension.dart';
 import 'package:personal_website/features/features.dart';
 
 class ContentsWidget extends StatefulWidget {
@@ -29,7 +28,7 @@ class _ContentsWidgetState extends State<ContentsWidget>
       youtubeBloc.youtubeVideos
           .map(
             (e) => ContentItemWidget(
-              imagePath: "https://i3.ytimg.com/vi/${e.id}/maxresdefault.jpg",
+              imagePath: "https://i.ytimg.com/vi/${e.id}/maxresdefault.jpg",
               title: e.title,
               description: e.description,
             ),
