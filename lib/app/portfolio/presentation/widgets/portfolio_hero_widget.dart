@@ -10,7 +10,7 @@ class PortfolioHeroWidget extends StatelessWidget {
       alignment: WrapAlignment.center,
       runAlignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
-      runSpacing: 32,
+      runSpacing: 16,
       spacing: 16,
       children: [
         Stack(
@@ -39,7 +39,7 @@ class PortfolioHeroWidget extends StatelessWidget {
             ).roundBorder16().pad8().customCard(
                 borderRadius: context.borderRadius24(), elevation: 10),
           ],
-        ).sizedBox(width: 500).pad16(),
+        ).sizedBox(width: 500),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,8 +76,10 @@ class PortfolioHeroWidget extends StatelessWidget {
               ],
             )
           ],
-        ).constrainedBox(const BoxConstraints(minWidth: 300, maxWidth: 600))
+        )
+            .constrainedBox(const BoxConstraints(minWidth: 300, maxWidth: 600))
+            .pad16()
       ],
-    ).pad8().maxDesktopWidth();
+    ).maxDesktopWidth();
   }
 }

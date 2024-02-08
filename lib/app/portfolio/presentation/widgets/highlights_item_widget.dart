@@ -16,31 +16,24 @@ class HighlightsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      color: Colors.white54,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Theme.of(context).colorScheme.surfaceVariant),
-        borderRadius: context.borderRadius24(),
-      ),
-      child: Column(
-        children: [
-          Image.asset(imagePath),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer),
-              ),
-              Text(description),
-            ],
-          ).pad8().expanded(),
-        ],
-      ),
-    ).constrainedBox(const BoxConstraints(maxWidth: 800, minWidth: 500));
+    return Column(
+      children: [
+        Image.asset(imagePath),
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer),
+            ),
+            Text(description),
+          ],
+        ).pad8().expanded(),
+      ],
+    )
+        .customCard(borderRadius: context.borderRadius32())
+        .constrainedBox(const BoxConstraints(maxWidth: 800, minWidth: 500));
   }
 }

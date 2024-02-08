@@ -53,67 +53,62 @@ class AboutMeWidget extends StatelessWidget {
               .headlineSmall!
               .copyWith(color: Colors.white),
         ),
-        Card(
-          color: Colors.white24,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Theme.of(context).colorScheme.surfaceVariant),
-            borderRadius: context.borderRadius32(),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    "assets/images/pp.png",
-                    width: 75,
-                    height: 75,
-                  ),
-                  FilledButton.icon(
-                    onPressed: () =>
-                        launchUrl(Uri.parse("mailto:info@erkam.dev")),
-                    label: const Text("Send Mail"),
-                    icon: const Icon(Icons.mail_outline_rounded),
-                  ),
-                ],
-              ),
-              const SingleChildScrollView(
-                child: Text(
-                    """Hi, I'm Erkam. I've been a Flutter developer and UI/UX designer since 2021. I'm passionate about using technology to solve problems and create beautifully designed experiences.
-              
-I worked as a Flutter developer at TeklifimGelsin, where I built a mobile app that received \$14 million in investment.
-              
-I currently work as a freelance Flutter developer and UI/UX designer. my most recent work is Decision AI, which uses Artificial Intelligence to help users make better decisions in various situations.
-              
-I am also a big fan of technology and cars, I love to learn about new trends. My favorite color is purple :)
-              
-I am always looking for new opportunities to use my skills and knowledge to make a difference. If you're interested in working with me, please don't hesitate to contact me.
-              
-I'm excited to see what the future holds for me. I'm confident that I can use my skills and knowledge to make a positive impact on the world.
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "assets/images/pp.png",
+                  width: 75,
+                  height: 75,
+                ),
+                FilledButton.icon(
+                  onPressed: () =>
+                      launchUrl(Uri.parse("mailto:info@erkam.dev")),
+                  label: const Text("Send Mail"),
+                  icon: const Icon(Icons.mail_outline_rounded),
+                ),
+              ],
+            ),
+            const SingleChildScrollView(
+              child: Text(
+                  """Hi, I'm Erkam. I've been a Flutter developer and UI/UX designer since 2021. I'm passionate about using technology to solve problems and create beautifully designed experiences.
 
-"""),
-              ).linearGradient(
-                [
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.transparent,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ).constrainedBox(
-                BoxConstraints(
-                    maxHeight: MediaQuery.sizeOf(context).height - 380),
-              ),
-            ],
-          ).pad16(),
-        ).maxDesktopWidth().pad16(vertical: false),
+I worked as a Flutter developer at TeklifimGelsin, where I built a mobile app that received \$14 million in investment.
+    
+I currently work as a freelance Flutter developer and UI/UX designer. my most recent work is Decision AI, which uses Artificial Intelligence to help users make better decisions in various situations.
+    
+I am also a big fan of technology and cars, I love to learn about new trends. My favorite color is purple :)
+    
+I am always looking for new opportunities to use my skills and knowledge to make a difference. If you're interested in working with me, please don't hesitate to contact me.
+    
+I'm excited to see what the future holds for me. I'm confident that I can use my skills and knowledge to make a positive impact on the world.
+        
+        """),
+            ).linearGradient(
+              [
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                Colors.transparent,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ).constrainedBox(
+              BoxConstraints(
+                  maxHeight: MediaQuery.sizeOf(context).height - 380),
+            ),
+          ],
+        )
+            .pad16()
+            .customCard(borderRadius: context.borderRadius32())
+            .maxDesktopWidth()
+            .pad16(vertical: false),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(

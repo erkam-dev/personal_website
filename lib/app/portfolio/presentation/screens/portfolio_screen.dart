@@ -23,7 +23,6 @@ class PortfolioScreen extends StatelessWidget {
           // ),
           ListView(
             children: const [
-              SizedBox.square(dimension: 64),
               PortfolioHeroWidget(),
               SizedBox.square(dimension: 64),
               PortfolioHighlightsWidget(),

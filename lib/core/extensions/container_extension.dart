@@ -12,6 +12,8 @@ extension ContainerExtension on Widget {
       Visibility(visible: visible ?? true, child: this);
   Offstage offstage([bool? offstage]) =>
       Offstage(offstage: offstage ?? true, child: this);
+  IgnorePointer ignorePointer([bool? ignoring]) =>
+      IgnorePointer(ignoring: ignoring ?? true, child: this);
   AspectRatio aspectRatio(double aspectRatio) =>
       AspectRatio(aspectRatio: aspectRatio, child: this);
   Card card({
@@ -56,9 +58,8 @@ extension ContainerExtension on Widget {
         key: key,
         shape: RoundedRectangleBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(16),
-            side: BorderSide(
-                width: 1, color: const Color(0xFFE8DDFF).withOpacity(0.5))),
-        color: color ?? Colors.white54,
+            side: const BorderSide(width: 1, color: Color(0xFFE6E0EC))),
+        color: color ?? Colors.white38,
         shadowColor: shadowColor,
         surfaceTintColor: surfaceTintColor,
         elevation: elevation,
