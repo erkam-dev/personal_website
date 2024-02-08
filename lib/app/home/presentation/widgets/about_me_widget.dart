@@ -106,7 +106,10 @@ I'm excited to see what the future holds for me. I'm confident that I can use my
           ],
         )
             .pad16()
-            .customCard(borderRadius: context.borderRadius32())
+            .customCard(
+              borderRadius: context.borderRadius32(),
+              blur: 0,
+            )
             .maxDesktopWidth()
             .pad16(vertical: false),
         SingleChildScrollView(
