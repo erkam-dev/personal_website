@@ -61,62 +61,54 @@ class _ContentsWidgetState extends State<ContentsWidget>
               .headlineSmall!
               .copyWith(color: Colors.white),
         ),
-        Card(
-          color: Colors.white24,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            side:
-                BorderSide(color: Theme.of(context).colorScheme.surfaceVariant),
-            borderRadius: context.borderRadius32(),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TabBar(
-                    controller: tabController,
-                    tabs: tabs
-                        .map((e) => Tab(
-                              text: e,
-                              iconMargin: context.edgeInsets(0),
-                              height: 30,
-                            ))
-                        .toList(),
-                    isScrollable: true,
-                    splashBorderRadius: context.borderRadius32(),
-                    onTap: (value) => setState(() => selectedIndex = value),
-                  ).pad16(),
-                  TabBarView(
-                          viewportFraction: 0.99,
-                          controller: tabController,
-                          children: tabViews
-                              .map((e) => SingleChildScrollView(
-                                    child: Wrap(
-                                      runAlignment: WrapAlignment.center,
-                                      alignment: WrapAlignment.center,
-                                      spacing: 0,
-                                      runSpacing: 8,
-                                      children: e,
-                                    ),
-                                  ))
-                              .toList())
-                      .sizedBox(height: MediaQuery.sizeOf(context).height - 400)
-                      .maxDesktopWidth(),
-                ],
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TabBar(
+                  controller: tabController,
+                  tabs: tabs
+                      .map((e) => Tab(
+                            text: e,
+                            iconMargin: context.edgeInsets(0),
+                            height: 30,
+                          ))
+                      .toList(),
+                  isScrollable: true,
+                  splashBorderRadius: context.borderRadius32(),
+                  onTap: (value) => setState(() => selectedIndex = value),
+                ).pad16(),
+                TabBarView(
+                        viewportFraction: 0.99,
+                        controller: tabController,
+                        children: tabViews
+                            .map((e) => SingleChildScrollView(
+                                  child: Wrap(
+                                    runAlignment: WrapAlignment.center,
+                                    alignment: WrapAlignment.center,
+                                    children: e,
+                                  ),
+                                ))
+                            .toList())
+                    .sizedBox(height: MediaQuery.sizeOf(context).height - 400)
+                    .maxDesktopWidth(),
+              ],
+            ),
+            Positioned(
+              bottom: 20,
+              child: FilledButton.icon(
+                onPressed: () {},
+                label: const Text("See More"),
+                icon: const Icon(Icons.view_carousel_rounded),
               ),
-              Positioned(
-                bottom: 20,
-                child: FilledButton.icon(
-                  onPressed: () {},
-                  label: const Text("See More"),
-                  icon: const Icon(Icons.view_carousel_rounded),
-                ),
-              )
-            ],
-          ),
-        ).maxDesktopWidth().pad16(vertical: false),
+            )
+          ],
+        )
+            .customCard(borderRadius: context.borderRadius32())
+            .maxDesktopWidth()
+            .pad16(vertical: false),
       ],
     );
   }

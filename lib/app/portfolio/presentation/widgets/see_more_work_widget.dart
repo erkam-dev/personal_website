@@ -6,6 +6,26 @@ class SeeMoreWorkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder().maxDesktopWidth();
+    return Column(
+      children: [
+        Text(
+          "Explore Other Works",
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: Colors.white),
+        ),
+        ContentItemWidget(
+          imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
+          title: "Decision AI",
+          description: "Making the decision-making process a breeze",
+          width: 550,
+          onTap: () {},
+        )
+      ],
+    ).maxDesktopWidth();
   }
 }

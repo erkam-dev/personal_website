@@ -20,7 +20,7 @@ class _PortfolioScreenshotsWidgetState
     currentPage = widget.screenshotPaths.length ~/ 2;
     controller = LoopPageController(
       initialPage: widget.screenshotPaths.length ~/ 2,
-      viewportFraction: 0.2,
+      viewportFraction: 0.5,
     );
     super.initState();
   }
@@ -43,17 +43,44 @@ class _PortfolioScreenshotsWidgetState
               controller: controller,
               itemCount: widget.screenshotPaths.length,
               onPageChanged: (value) => setState(() => currentPage = value),
-              itemBuilder: (context, index) =>
-                  Image.asset(widget.screenshotPaths[index])
-                      .roundBorder24()
-                      .pad16()
-                      .customCard(borderRadius: context.borderRadius32())
-                      .animatedScale(switch ((currentPage - index).abs()) {
-                        0 => 1,
-                        _ => 0.7
-                      })
-                      .aspectRatio(9 / 16),
-            ).sizedBox(height: MediaQuery.sizeOf(context).height / 1.2),
+              itemBuilder: (context, index) => Image.asset(
+                      widget.screenshotPaths[index])
+                  .roundBorder16()
+                  .animatedContainer(
+                    padding:
+                        context.edgeInsets(currentPage - index == 0 ? 8 : 0),
+                  )
+                  .customCard(borderRadius: context.borderRadius24())
+                  .animatedScale(
+                      switch ((currentPage - index).abs()) { 0 => 1, _ => 0.7 })
+                  .centerWidget(),
+            ).sizedBox(height: 600),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.navigate_before_rounded)
+                    .pad16()
+                    .inkwell(() => controller.animateToPage(
+                        currentPage - 1 < 0
+                            ? widget.screenshotPaths.length - 1
+                            : currentPage - 1,
+                        duration: context.durationMilliseconds300(),
+                        curve: Curves.easeOutCubic))
+                    .roundBorder16()
+                    .customCard(),
+                SizedBox(width: MediaQuery.sizeOf(context).width / 1.5 - 100),
+                const Icon(Icons.navigate_next_rounded)
+                    .pad16()
+                    .inkwell(() => controller.animateToPage(
+                        currentPage + 1 >= widget.screenshotPaths.length
+                            ? 0
+                            : currentPage + 1,
+                        duration: context.durationMilliseconds300(),
+                        curve: Curves.easeOutCubic))
+                    .roundBorder16()
+                    .customCard(),
+              ],
+            ).pad32()
           ],
         )
       ],

@@ -25,7 +25,7 @@ class PortfolioWidget extends StatelessWidget {
                 imagePath: "assets/images/thumbnails/tg_thumbnail.png",
                 title: "TeklifimGelsin",
                 description: "Personalized Financial Market Place & Assistant",
-                width: 600,
+                width: 550,
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -35,14 +35,14 @@ class PortfolioWidget extends StatelessWidget {
                 imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
                 title: "Decision AI",
                 description: "Making the decision-making process a breeze",
-                width: 600,
+                width: 550,
               ),
             ],
           ),
         )
             .constrainedBox(
               BoxConstraints(
-                  maxHeight: MediaQuery.sizeOf(context).height - 150),
+                  maxHeight: MediaQuery.sizeOf(context).height - 100),
             )
             .roundBorder24(),
       ],
