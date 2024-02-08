@@ -67,6 +67,6 @@ extension ContainerExtension on Widget {
         margin: margin,
         clipBehavior: clipBehavior,
         semanticContainer: semanticContainer,
-        child: blurBackgroundWithClip(blur: blur),
+        child: blur != 0 ? blurBackgroundWithClip(blur: blur) : this,
       );
 }
