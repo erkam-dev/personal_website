@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/core/constants/layout_breakpoints.dart';
+import 'package:personal_website/core/core.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../youtube.dart';
@@ -65,12 +65,17 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                         minWidth: 500,
                       ),
                 child: Scaffold(
-                  appBar: AppBar(title: Text(widget.video.title)),
+                  appBar: AppBar(
+                    title: Text(
+                      widget.video.title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
                     Card(child: YoutubePlayer(controller: controller)),
                     SelectableText(
                       widget.video.description,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ]),
                 ),
