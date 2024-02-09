@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:personal_website/common_widgets/common_widgets.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -51,7 +52,10 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                       ),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text((widget.githubRepo.title ?? "")),
+                    title: Text(
+                      widget.githubRepo.title ?? "",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     actions: [
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
@@ -64,14 +68,15 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                   body: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Card(
-                        child: BlocBuilder(
-                            bloc: githubBloc,
-                            builder: (context, state) => Markdown(
-                                // imageBuilder: (uri, title, alt) =>
-                                // ImageNetwork(image: uri.toString()),
-                                // TODO: convert markdown widget to extension.
-                                // TODO: add ImageNetwork widget to Markdown Extension
-                                data: githubBloc.readmeContent ?? ""))),
+                      child: BlocBuilder(
+                        bloc: githubBloc,
+                        builder: (context, state) => Markdown(
+                          imageBuilder: (uri, title, alt) =>
+                              SmartImageWidget(imagePath: uri.toString()),
+                          data: githubBloc.readmeContent ?? "",
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

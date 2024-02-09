@@ -27,22 +27,50 @@ class _ContentsWidgetState extends State<ContentsWidget>
     tabViews = [
       youtubeBloc.youtubeVideos
           .map(
-            (e) => ContentItemWidget(
-              imagePath: "https://i.ytimg.com/vi/${e.id}/maxresdefault.jpg",
-              title: e.title,
-              description: e.description,
+            (e) => Hero(
+              tag: e,
+              child: ContentItemWidget(
+                imagePath: "https://i.ytimg.com/vi/${e.id}/maxresdefault.jpg",
+                title: e.title,
+                description: e.description,
+                onTap: () => Navigator.push(
+                    context,
+                    HeroDialogRoute(
+                        builder: (context) =>
+                            YoutubeVideoDetailsScreen(video: e))),
+              ),
             ),
           )
           .toList(),
       figmaBloc.projectFiles
-          .map((e) => ContentItemWidget(
-              imagePath: e.thumbnailUrl, title: e.name, description: ""))
+          .map((e) => Hero(
+                tag: e,
+                child: ContentItemWidget(
+                  imagePath: e.thumbnailUrl,
+                  title: e.name,
+                  description: "",
+                  onTap: () => Navigator.push(
+                      context,
+                      HeroDialogRoute(
+                          builder: (context) =>
+                              FigmaFileDetailsScreen(figmaFile: e))),
+                ),
+              ))
           .toList(),
       githubBloc.github.repos
-          .map((e) => ContentItemWidget(
-              imagePath: "${e.thumbnailUrl}",
-              title: "${e.title}",
-              description: "${e.repoName} | ${e.branch}"))
+          .map((e) => Hero(
+                tag: e,
+                child: ContentItemWidget(
+                  imagePath: "${e.thumbnailUrl}",
+                  title: "${e.title}",
+                  description: "${e.repoName} | ${e.branch}",
+                  onTap: () => Navigator.push(
+                      context,
+                      HeroDialogRoute(
+                          builder: (context) =>
+                              GithubRepoDetailsScreen(githubRepo: e))),
+                ),
+              ))
           .toList(),
     ];
     super.initState();

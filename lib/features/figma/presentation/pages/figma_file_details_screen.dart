@@ -36,7 +36,10 @@ class FigmaFileDetailsScreen extends StatelessWidget {
                       ),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text(figmaFile.name),
+                    title: Text(
+                      figmaFile.name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     actions: [
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
@@ -49,6 +52,8 @@ class FigmaFileDetailsScreen extends StatelessWidget {
                   body: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: context.borderRadius16()),
                         child: WebViewX(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,

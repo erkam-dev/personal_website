@@ -35,7 +35,7 @@ class SmartImageWidget extends StatelessWidget {
       </head>
       <img src="$imagePath" style="width: 100%; height: auto;">
     </html>""",
-              ).scale(1.07)
+              ).ignorePointer().scale(1.07)
             : const SizedBox());
   }
 }
