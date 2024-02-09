@@ -42,14 +42,13 @@ extension ContainerExtension on Widget {
         child: this,
       );
   Card customCard({
-    BorderRadius? borderRadius,
+    double? borderRadius,
     double? blur,
     Key? key,
     Color? color,
     Color? shadowColor,
     Color? surfaceTintColor,
     double? elevation,
-    bool borderOnForeground = true,
     EdgeInsetsGeometry? margin,
     Clip? clipBehavior,
     bool semanticContainer = true,
@@ -57,13 +56,13 @@ extension ContainerExtension on Widget {
       Card(
         key: key,
         shape: RoundedRectangleBorder(
-            borderRadius: borderRadius ?? BorderRadius.circular(16),
-            side: const BorderSide(width: 1, color: Color(0xFFE6E0EC))),
+          borderRadius: BorderRadius.circular(borderRadius ?? 16),
+          side: const BorderSide(width: 1, color: Color(0xFFE6E0EC)),
+        ),
         color: color ?? Colors.white38,
         shadowColor: shadowColor,
         surfaceTintColor: surfaceTintColor,
         elevation: elevation,
-        borderOnForeground: borderOnForeground,
         margin: margin,
         clipBehavior: clipBehavior,
         semanticContainer: semanticContainer,

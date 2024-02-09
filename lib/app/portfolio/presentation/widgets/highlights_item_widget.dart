@@ -33,7 +33,7 @@ class HighlightsItemWidget extends StatelessWidget {
         ).pad8().expanded(),
       ],
     )
-        .customCard(borderRadius: context.borderRadius32())
+        .customCard(borderRadius: 32)
         .constrainedBox(const BoxConstraints(maxWidth: 800, minWidth: 500));
   }
 }

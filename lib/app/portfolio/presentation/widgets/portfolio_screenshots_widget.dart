@@ -50,7 +50,7 @@ class _PortfolioScreenshotsWidgetState
                     padding:
                         context.edgeInsets(currentPage - index == 0 ? 8 : 0),
                   )
-                  .customCard(borderRadius: context.borderRadius24())
+                  .customCard(borderRadius: 24)
                   .animatedScale(
                       switch ((currentPage - index).abs()) { 0 => 1, _ => 0.7 })
                   .centerWidget(),
