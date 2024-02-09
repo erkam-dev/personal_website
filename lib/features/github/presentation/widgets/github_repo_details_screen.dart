@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:personal_website/common_widgets/common_widgets.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '../../github.dart';
 
@@ -70,11 +69,16 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                     child: Card(
                       child: BlocBuilder(
                         bloc: githubBloc,
-                        builder: (context, state) => Markdown(
-                          imageBuilder: (uri, title, alt) =>
-                              SmartImageWidget(imagePath: uri.toString()),
-                          data: githubBloc.readmeContent ?? "",
-                        ),
+                        builder: (context, state) => state.runtimeType ==
+                                GithubLoading
+                            ? const CircularProgressIndicator().centerWidget()
+                            : WebViewX(
+                                width: MediaQuery.sizeOf(context).width,
+                                height: MediaQuery.sizeOf(context).height,
+                                initialSourceType: SourceType.html,
+                                initialContent:
+                                    githubBloc.readmeContent.toString(),
+                              ),
                       ),
                     ),
                   ),
