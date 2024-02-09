@@ -36,8 +36,10 @@ class PortfolioHeroWidget extends StatelessWidget {
             Image.asset(
               "assets/images/screenshots/tg/tg_ss_1.webp",
               width: 230,
-            ).roundBorder16().pad8().customCard(
-                borderRadius: context.borderRadius24(), elevation: 10),
+            )
+                .roundBorder16()
+                .pad8()
+                .customCard(borderRadius: 24, elevation: 10),
           ],
         ).sizedBox(width: 500),
         Column(

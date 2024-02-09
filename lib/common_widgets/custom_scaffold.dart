@@ -100,7 +100,7 @@ class CustomScaffold extends StatelessWidget {
                           () => launchUrl(Uri.parse("mailto:info@erkam.dev")))
                       .pad8(vertical: false)
                       .customCard()
-                      .padOnly(right: 8)
+                      .padOnly(right: 16)
                 ],
               ),
           backgroundColor: backgroundColor ?? Colors.transparent,

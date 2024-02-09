@@ -48,9 +48,6 @@ class StoreDownloadButton extends StatelessWidget {
       if ((redirectionUrl ?? "").isNotEmpty) {
         launchUrl(Uri.parse(redirectionUrl!));
       }
-    }).customCard(
-      borderRadius: context.borderRadius8(),
-      margin: EdgeInsets.zero,
-    );
+    }).customCard(borderRadius: 8, margin: EdgeInsets.zero);
   }
 }

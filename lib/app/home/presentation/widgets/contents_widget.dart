@@ -133,10 +133,7 @@ class _ContentsWidgetState extends State<ContentsWidget>
               ),
             )
           ],
-        )
-            .customCard(borderRadius: context.borderRadius32())
-            .maxDesktopWidth()
-            .pad16(vertical: false),
+        ).customCard(borderRadius: 32).maxDesktopWidth().pad16(vertical: false),
       ],
     );
   }
