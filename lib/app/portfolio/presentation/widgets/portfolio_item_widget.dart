@@ -49,7 +49,10 @@ class PortfolioItemWidget extends StatelessWidget {
       ],
     )
         .inkwell(onTap)
-        .customCard(margin: context.edgeInsets16(), borderRadius: 32)
+        .customCard(
+            margin:
+                context.edgeInsetsOnly(right: 16, left: 16, bottom: 8, top: 8),
+            borderRadius: 24)
         .sizedBox(width: 550);
   }
 }
