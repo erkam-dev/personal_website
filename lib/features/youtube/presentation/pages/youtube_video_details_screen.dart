@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/core/core.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '../../youtube.dart';
 
@@ -14,32 +14,17 @@ class YoutubeVideoDetailsScreen extends StatefulWidget {
 }
 
 class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
-  var params = const YoutubePlayerParams();
-  var controller = YoutubePlayerController();
-  @override
-  void initState() {
-    super.initState();
-    params = const YoutubePlayerParams(
-      enableCaption: true,
-      showControls: true,
-      showFullscreenButton: true,
-      strictRelatedVideos: true,
-    );
-    controller = YoutubePlayerController.fromVideoId(
-      videoId: widget.video.id,
-      autoPlay: true,
-      params: params,
-    );
-  }
+  late WebViewXController webViewXController;
 
   @override
   void dispose() {
-    controller.close();
+    webViewXController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // TODO: make sliver widget for video sticky at top
     return LayoutBuilder(
       builder: (context, c) => Align(
         alignment: Alignment.center,
@@ -72,7 +57,42 @@ class _YoutubeVideoDetailsScreenState extends State<YoutubeVideoDetailsScreen> {
                     ),
                   ),
                   body: ListView(padding: const EdgeInsets.all(15), children: [
-                    Card(child: YoutubePlayer(controller: controller)),
+                    // Card(child: YoutubePlayer(controller: controller)),
+                    WebViewX(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height,
+                      initialSourceType: SourceType.html,
+                      onWebViewCreated: (controller) =>
+                          webViewXController = controller,
+                      initialContent: """ <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Embedded YouTube Video</title>
+              <style>
+                body, html {
+                  margin: 0;
+                  height: 100%;
+                  overflow: hidden;
+                }
+                iframe {
+                  width: 100%;
+                  height: 100%;
+                }
+              </style>
+            </head>
+            <body>
+              <iframe 
+                src="https://www.youtube.com/embed/${widget.video.id}?autoplay=1&rel=0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+              ></iframe>
+            </body>
+            </html>""",
+                    ).aspectRatio(16 / 9).card(),
                     SelectableText(
                       widget.video.description,
                       style: Theme.of(context).textTheme.bodyLarge,
