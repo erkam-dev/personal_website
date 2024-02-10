@@ -17,25 +17,23 @@ class PortfolioWidget extends StatelessWidget {
               .headlineSmall!
               .copyWith(color: Colors.white),
         ).padOnly(bottom: 16),
-        SingleChildScrollView(
+        const SingleChildScrollView(
           child: Wrap(
             alignment: WrapAlignment.spaceBetween,
             children: [
-              ContentItemWidget(
+              PortfolioItemWidget(
                 imagePath: "assets/images/thumbnails/tg_thumbnail.png",
                 title: "TeklifimGelsin",
                 description: "Personalized Financial Market Place & Assistant",
-                width: 550,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PortfolioScreen())),
+                // onTap: () => Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const PortfolioScreen())),
               ),
-              const ContentItemWidget(
+              PortfolioItemWidget(
                 imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
                 title: "Decision AI",
                 description: "Making the decision-making process a breeze",
-                width: 550,
               ),
             ],
           ),

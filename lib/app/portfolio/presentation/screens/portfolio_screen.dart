@@ -3,48 +3,50 @@ import 'package:flutter/material.dart';
 import '../../../../lib.dart';
 
 class PortfolioScreen extends StatelessWidget {
-  const PortfolioScreen({super.key});
+  final String? iconPath;
+  final String? title;
+  final String? description;
+  final String? appleRedirectionLink;
+  final String? playRedirectionLink;
+  final List<HighlightsItemWidget>? highlightItems;
+  final List<String>? screenshotPathList;
+  final List<Map<String, String>>? moreExplanations;
+  final List<PortfolioItemWidget>? otherWorks;
+  const PortfolioScreen({
+    super.key,
+    this.iconPath,
+    this.title,
+    this.description,
+    this.appleRedirectionLink,
+    this.playRedirectionLink,
+    this.highlightItems,
+    this.screenshotPathList,
+    this.moreExplanations,
+    this.otherWorks,
+  });
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Stack(
-        alignment: Alignment.center,
+      body: ListView(
         children: [
-          // Container(
-          //   height: 400,
-          //   width: 700,
-          //   color: Colors.blue,
-          // ),
-          // Container(
-          //   height: 700,
-          //   width: 400,
-          //   color: Colors.orange,
-          // ),
-          ListView(
-            children: const [
-              PortfolioHeroWidget(),
-              SizedBox.square(dimension: 64),
-              PortfolioHighlightsWidget(),
-              SizedBox.square(dimension: 64),
-              PortfolioScreenshotsWidget(
-                screenshotPaths: [
-                  "assets/images/screenshots/tg/tg_ss_1.webp",
-                  "assets/images/screenshots/tg/tg_ss_2.webp",
-                  "assets/images/screenshots/tg/tg_ss_3.webp",
-                  "assets/images/screenshots/tg/tg_ss_4.webp",
-                  "assets/images/screenshots/tg/tg_ss_5.webp",
-                  "assets/images/screenshots/tg/tg_ss_6.webp",
-                  "assets/images/screenshots/tg/tg_ss_7.webp",
-                ],
-              ),
-              SizedBox.square(dimension: 64),
-              PortfolioMoreExplanationsWidget(),
-              SizedBox.square(dimension: 64),
-              SeeMoreWorkWidget(),
-              SizedBox.square(dimension: 64),
-            ],
+          PortfolioHeroWidget(
+            heroScreenshotPathList: screenshotPathList,
+            iconPath: iconPath,
+            title: title,
+            description: description,
+            appleRedirectionLink: appleRedirectionLink,
+            playRedirectionLink: playRedirectionLink,
           ),
+          const SizedBox(height: 64),
+          const PortfolioHighlightsWidget(),
+          const SizedBox(height: 64),
+          PortfolioScreenshotsWidget(screenshotPaths: screenshotPathList),
+          const SizedBox(height: 64),
+          PortfolioMoreExplanationsWidget(contents: moreExplanations),
+          const SizedBox(height: 64),
+          SeeMoreWorkWidget(items: otherWorks),
+          const SizedBox(height: 64),
         ],
       ),
     );
