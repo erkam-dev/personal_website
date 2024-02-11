@@ -14,7 +14,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: figmaBloc,
       builder: (context, state) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -85,7 +85,7 @@ class FigmaDesignsSectionWidget extends StatelessWidget {
                   ),
           ),
         ],
-      ),
+      ).maxDesktopWidth(),
     );
   }
 }

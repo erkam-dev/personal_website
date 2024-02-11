@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '../../github.dart';
 
@@ -50,9 +51,10 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                       ),
                 child: Scaffold(
                   appBar: AppBar(
-                    title: Text((widget.githubRepo.repoName ?? "")
-                        .replaceAll("-", " ")
-                        .capitalizeEveryWordsFirstChar()),
+                    title: Text(
+                      widget.githubRepo.title ?? "",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     actions: [
                       OutlinedButton.icon(
                         onPressed: () => launchUrl(Uri.parse(
@@ -64,7 +66,36 @@ class _GithubRepoDetailsScreenState extends State<GithubRepoDetailsScreen> {
                   ),
                   body: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Card(child: Text(githubBloc.readmeContent ?? "")),
+                    child: Card(
+                      child: BlocBuilder(
+                        bloc: githubBloc,
+                        builder: (context, state) => state.runtimeType ==
+                                GithubLoading
+                            ? const CircularProgressIndicator().centerWidget()
+                            : WebViewX(
+                                width: MediaQuery.sizeOf(context).width,
+                                height: MediaQuery.sizeOf(context).height,
+                                initialSourceType: SourceType.html,
+                                initialContent: """<!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Document</title>
+              <style>
+                body {
+                  font-family: 'Montserrat', sans-serif; /* Varsayılan fontu değiştir */
+                }
+              </style>
+            </head>
+            <body>
+              ${githubBloc.readmeContent}
+            </body>
+            </html>
+""",
+                              ),
+                      ),
+                    ),
                   ),
                 ),
               ),

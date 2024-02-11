@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_network/image_network.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:personal_website/features/features.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,7 +13,7 @@ class GithubReposSectionWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: githubBloc,
       builder: (context, state) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
             onTap: () =>
@@ -52,17 +51,14 @@ class GithubReposSectionWidget extends StatelessWidget {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .surfaceVariant,
-                                  child: ImageNetwork(
-                                    image: e.thumbnailUrl ?? "",
+                                  child: Image.network(
+                                    e.thumbnailUrl ?? "",
                                     width: 300,
                                     height: 175,
-                                    onTap: openRepoDetail,
                                   )),
                               ListTile(
                                 title: Text(
-                                  (e.repoName ?? "")
-                                      .replaceAll("-", " ")
-                                      .capitalizeEveryWordsFirstChar(),
+                                  (e.title ?? ""),
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                   maxLines: 1,
@@ -83,7 +79,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                   }).toList(),
                 ).sizedBox(height: 240),
         ],
-      ),
+      ).maxDesktopWidth(),
     );
   }
 }
