@@ -22,7 +22,7 @@ class GetRawRepoFileUsecase extends Equatable
 class GetRawRepoFileParams extends Equatable {
   final String filePath;
 
-  GetRawRepoFileParams({required this.filePath});
+  const GetRawRepoFileParams({required this.filePath});
 
   @override
   List<Object?> get props => [filePath];

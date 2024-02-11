@@ -19,10 +19,10 @@ class SmoothListView extends StatefulWidget {
     this.shrinkWrap,
   });
   @override
-  _SmoothListViewState createState() => _SmoothListViewState();
+  SmoothListViewState createState() => SmoothListViewState();
 }
 
-class _SmoothListViewState extends State<SmoothListView> {
+class SmoothListViewState extends State<SmoothListView> {
   final sink = StreamController<double>();
   final pager = ScrollController();
 
@@ -67,7 +67,7 @@ class _SmoothListViewState extends State<SmoothListView> {
     double offset = pager.position.pixels;
     DateTime dt = DateTime.now();
     await for (var delta in src) {
-      if (DateTime.now().difference(dt) > Duration(milliseconds: 200)) {
+      if (DateTime.now().difference(dt) > const Duration(milliseconds: 200)) {
         offset = pager.position.pixels;
       }
       dt = DateTime.now();
@@ -85,8 +85,7 @@ class _SmoothListViewState extends State<SmoothListView> {
 
 // workaround https://github.com/flutter/flutter/issues/35723
 class _IgnorePointerSignal extends SingleChildRenderObjectWidget {
-  _IgnorePointerSignal({Key? key, Widget? child})
-      : super(key: key, child: child);
+  const _IgnorePointerSignal({super.child});
 
   @override
   RenderObject createRenderObject(_) => _IgnorePointerSignalRenderObject();
@@ -96,12 +95,12 @@ class _IgnorePointerSignalRenderObject extends RenderProxyBox {
   @override
   bool hitTest(BoxHitTestResult result, {required Offset position}) {
     final res = super.hitTest(result, position: position);
-    result.path.forEach((item) {
+    for (var item in result.path) {
       final target = item.target;
       if (target is RenderPointerListener) {
         target.onPointerSignal = null;
       }
-    });
+    }
     return res;
   }
 }

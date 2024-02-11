@@ -6,7 +6,7 @@ class Github extends Equatable {
   final String username;
   final List<GithubRepo> repos;
 
-  Github({required this.username, required this.repos});
+  const Github({required this.username, required this.repos});
 
   @override
   List<Object?> get props => [username, repos];

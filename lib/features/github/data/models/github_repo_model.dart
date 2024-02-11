@@ -1,7 +1,7 @@
 import 'package:personal_website/features/features.dart';
 
 class GithubRepoModel extends GithubRepo {
-  GithubRepoModel(
+  const GithubRepoModel(
       {super.title,
       super.description,
       super.thumbnailUrl,
