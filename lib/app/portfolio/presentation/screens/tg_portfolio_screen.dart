@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/app/portfolio/presentation/screens/decisionai_portfolio_screen.dart';
 
 import '../../../../lib.dart';
 
@@ -83,7 +84,12 @@ Overall, my time at Teklifimgelsin has been marked by a relentless pursuit of ex
           imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
           title: "Decision AI",
           description: "Making the decision-making process a breeze",
-          onTap: () {},
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DecisionaiPortfolioScreen()));
+          },
         )
       ],
     );

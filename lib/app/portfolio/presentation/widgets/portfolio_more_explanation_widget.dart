@@ -68,7 +68,8 @@ class PortfolioMoreExplanationsWidget extends StatelessWidget {
                                       ));
                                 })
                                 .roundBorder32()
-                                .customCard(borderRadius: 32),
+                                .customCard(borderRadius: 32)
+                                .padOnly(bottom: 16),
                             Positioned(
                               right: 12,
                               top: 12,

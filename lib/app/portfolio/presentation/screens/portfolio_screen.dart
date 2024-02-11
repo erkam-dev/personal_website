@@ -39,7 +39,7 @@ class PortfolioScreen extends StatelessWidget {
             playRedirectionLink: playRedirectionLink,
           ),
           const SizedBox(height: 64),
-          const PortfolioHighlightsWidget(),
+          PortfolioHighlightsWidget(highlightItems: highlightItems),
           const SizedBox(height: 64),
           PortfolioScreenshotsWidget(screenshotPaths: screenshotPathList),
           const SizedBox(height: 64),

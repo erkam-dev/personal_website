@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/app/portfolio/presentation/screens/tg_portfolio_screen.dart';
 
 import '../../../../lib.dart';
 
@@ -18,67 +19,64 @@ class DecisionaiPortfolioScreen extends StatelessWidget {
         "assets/images/screenshots/decisionai/decisionai_ss_7.webp",
       ],
       iconPath: "assets/images/icons/app/decisionai.png",
-      title: "TeklifimGelsin",
-      description: "Personalized Financial Market Place & Assistant",
-      appleRedirectionLink: "https://apps.apple.com/tr/app/id6443582957",
+      title: "Decision AI",
+      description: "Making the decision-making process a breeze",
+      appleRedirectionLink: "https://apps.apple.com/app/id6471530058",
       playRedirectionLink:
-          "https://play.google.com/store/apps/details?id=com.teklifimgelsin.romulus",
+          "https://play.google.com/store/apps/details?id=com.decisionmaker.ai",
       highlightItems: const [
         HighlightsItemWidget(
           imagePath:
-              "assets/images/highlights/decisionai/decisionai_hl_store.webp",
-          title: "+400.000 Active User",
+              "assets/images/highlights/decisionai/decisionai_hl_compare.webp",
+          title: "Compare Two Options",
           description:
-              "In 2024, Teklifimgelsin reached more than 400,000 users in app stores for both Android and iOS platforms.",
+              "Enter two options you want to compare or make a decision about, and why you want to compare them.",
         ),
         HighlightsItemWidget(
           imagePath:
-              "assets/images/highlights/decisionai/decisionai_hl_valuation.webp",
-          title: "\$14 Million Valuation",
+              "assets/images/highlights/decisionai/decisionai_hl_importance.webp",
+          title: "Determine importance",
           description:
-              "Teklifimgelsin received \$14 million investment and became one of the largest financial marketplace startups.",
+              "Answer questions and criteria prepared by artificial intelligence based on their importance to you, and evaluate different perspectives.",
         ),
         HighlightsItemWidget(
           imagePath:
-              "assets/images/highlights/decisionai/decisionai_hl_report.webp",
-          title: "decisionai Credit Report",
+              "assets/images/highlights/decisionai/decisionai_hl_result.webp",
+          title: "Explore Results",
           description:
-              "Credit Report is a product for users to increase their financial literacy and obtain information about their creditworthiness",
+              "Discover which option to choose based on your prioritized criteria and answers given.",
         ),
         HighlightsItemWidget(
           imagePath:
-              "assets/images/highlights/decisionai/decisionai_hl_offer.webp",
-          title: "Special Offers",
+              "assets/images/highlights/decisionai/decisionai_hl_share.webp",
+          title: "Share Your Experience",
           description:
-              "Teklifimgelsin offers personalized loan, credit card, investment and various other offers tailored to each user.",
+              "Tap the share icon on the results screen to easily share these results with your friends.",
         ),
       ],
       moreExplanations: const [
         {
           "title": "The App’s Structure",
           "body":
-              """Teklifimgelsin Mobile App has been meticulously crafted from scratch using Flutter for 1.5 years. It takes the MVP approach and customizes Material Design 3 for UI consistency. The app embraces automation and architectural integrity. It supports features such as push notifications, analytics, A/B testing, remote configuration, in-app web view browser, native in-app purchasing and custom in-app ad tracking.
+              """The Decision AI app went through a rapid development cycle from concept to launch, targeting both Android and iOS platforms in a compressed timeframe of about a month. Leveraging the versatile Flutter framework, I spearheaded the development process and ensured seamless compatibility and performance on both operating systems. Using a pre-made glass design in Figma, I meticulously customized the visual elements of the app to have a sleek and modern aesthetic.
 
-The development of the app was quite challenging and faced a number of technical challenges. In particular, the integration of push notifications was a major challenge. Technical details such as optimizing the in-app web view browser and integrating local purchases were also worked on.
+In addition to my role in app development, I also played an important role in the development of the app's AI capabilities. I actively contributed to the creation of prompts and algorithms, leveraging my expertise in AI to optimize decision-making processes within the app. This involved extensive research into machine learning techniques and natural language processing to ensure the efficiency and accuracy of AI-based prompts.
 
-Future plans for Teklifimgelsin include adding new features and improving existing ones to enhance the user experience. For example, a more user-friendly interface design and faster performance are targeted. It also plans to introduce new services and products based on user feedback.
+The user interface design posed unique challenges, especially in mitigating the side effects of blur effects and ensuring optimal user experience in the data flow. To overcome these challenges, I applied advanced state management techniques using the Bloc architecture, ensuring efficient data flow and seamless interaction within the application.
 
-In this process, the focus is on continuous development and learning to adapt to technological innovations and market trends. The use of innovative technologies such as Flutter has increased the competitive advantage of the application and provided a more flexible and scalable structure.""",
+Moreover, Decision AI includes monetization strategies through the integration of Google Admob ads. This strategic partnership not only provides a source of revenue, but also increases user engagement by delivering relevant and targeted ads. As I continue to develop the app, I will remain committed to continuous development and improvement initiatives to ensure that Decision AI remains at the forefront of innovation in the field of decision-making assistants.
+""",
         },
         {
           "title": "My Journey At TeklifimGelsin",
           "body":
-              """During my tenure at Teklifimgelsin, I led the development of the app and guided its transformation into a market-leading financial assistant. I meticulously designed the app using Flutter and managed to achieve a smooth and intuitive user experience.
+              """Embarking on the journey of developing Decision AI proved to be an enriching experience as I explored the cutting-edge field of AI to create a sophisticated decision-making assistant. As a freelance developer, it has been a pleasure to immerse myself in the intricacies of app development, especially in the area of customizing prompts and refining AI architecture.
 
-One of the key challenges I faced during the development process was to ensure scalability and maintainability as the complexity of the application increased. I applied software architecture best practices such as modularization and clean code principles to ensure the long-term viability and maintainability of the application.
+Navigating the complexities of interface design presented its own challenges to ensure a seamless user experience. Through rigorous problem solving and innovative solutions, I overcame these obstacles and took the experience of the app to new heights.
 
-In addition to technical leadership, I also played an important role in fostering a collaborative and inclusive team culture. I organized regular knowledge sharing sessions and fostered open communication between team members, fostering a sense of ownership and accountability for the success of the project.
+In the quest for optimal performance and scalability, I implemented Bloc architecture for efficient state management and built a solid foundation for seamless data flow and interaction within the app. I also strategically integrated Google Admob ads, not only as a monetization strategy, but also as a way to increase user engagement through targeted advertising.
 
-As part of my responsibilities, I also conducted extensive user research and feedback analysis to continuously iterate and improve the app's features. This iterative approach enabled us to remain agile and responsive to user needs, resulting in a product that truly resonated with our target audience.
-
-I also championed the importance of user security and data privacy throughout the development process, ensuring compliance with industry standards and regulations by implementing robust security measures to protect user information and build trust with our audience.
-
-Overall, my time at Teklifimgelsin has been marked by a relentless pursuit of excellence and innovation. I am proud to have played a central role in building the app into what it is today: a market-leading financial assistant that allows users to take control of their finances with confidence and ease.
+As my journey with Decision AI continues, so does my commitment to continuous improvement and development. It has been a great experience for me to leverage the latest advancements in technology and user experience design to deliver an intuitive and effective decision-making tool that empowers users to make informed choices with confidence.
 """,
         },
       ],
@@ -87,7 +85,12 @@ Overall, my time at Teklifimgelsin has been marked by a relentless pursuit of ex
           imagePath: "assets/images/thumbnails/tg_thumbnail.png",
           title: "TeklifimGelsin",
           description: "Personalized Financial Market Place & Assistant",
-          onTap: () {},
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const TgPortfolioScreen()));
+          },
         )
       ],
     );
