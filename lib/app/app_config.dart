@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,9 +23,11 @@ class App extends StatelessWidget {
         valueListenable: themeMode,
         builder: (context, value, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          scrollBehavior: const CupertinoScrollBehavior(),
-          themeMode: value,
-          navigatorKey: NavigationService.navigatorKey,
+          scrollBehavior: const CupertinoScrollBehavior().copyWith(
+            dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
+            scrollbars: false,
+          ),
+          themeMode: ThemeMode.light,
           theme: lightTheme(),
           darkTheme: darkTheme(),
           home: const HomeScreen(),
@@ -31,8 +35,4 @@ class App extends StatelessWidget {
       ),
     );
   }
-}
-
-class NavigationService {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
