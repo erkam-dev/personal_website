@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/common_widgets/bouncy_animation_widget.dart';
 
 extension AnimationExtension on Widget {
-  AnimatedSize animatedSize({Duration? duration}) => AnimatedSize(
+  AnimatedSize animatedSize(
+          {Duration? duration,
+          AlignmentGeometry alignment = Alignment.center}) =>
+      AnimatedSize(
         duration: duration ?? const Duration(milliseconds: 300),
+        alignment: alignment,
         curve: Curves.easeOutCubic,
         child: this,
       );
@@ -44,6 +48,41 @@ extension AnimationExtension on Widget {
           child: this,
         ),
         duration: duration ?? const Duration(milliseconds: 300),
+        child: this,
+      );
+  AnimatedContainer animatedContainer({
+    AlignmentGeometry? alignment,
+    EdgeInsetsGeometry? padding,
+    Color? color,
+    Decoration? decoration,
+    Decoration? foregroundDecoration,
+    double? width,
+    double? height,
+    BoxConstraints? constraints,
+    EdgeInsetsGeometry? margin,
+    Matrix4? transform,
+    AlignmentGeometry? transformAlignment,
+    Clip clipBehavior = Clip.none,
+    Curve curve = Curves.linear,
+    Duration? duration,
+    void Function()? onEnd,
+  }) =>
+      AnimatedContainer(
+        duration: duration ?? const Duration(milliseconds: 300),
+        alignment: alignment,
+        padding: padding,
+        color: color,
+        decoration: decoration,
+        foregroundDecoration: foregroundDecoration,
+        width: width,
+        height: height,
+        constraints: constraints,
+        margin: margin,
+        transform: transform,
+        transformAlignment: transformAlignment,
+        clipBehavior: clipBehavior,
+        curve: curve,
+        onEnd: onEnd,
         child: this,
       );
 }

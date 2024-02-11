@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:personal_website/core/injection/plugins/init_dio_plugin.dart';
 
 import '../core.dart';
 

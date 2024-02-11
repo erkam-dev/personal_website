@@ -10,7 +10,7 @@ sealed class GithubEvent extends Equatable {
 class GetRawReadmeFile extends GithubEvent {
   final GithubRepo githubRepo;
 
-  GetRawReadmeFile({required this.githubRepo});
+  const GetRawReadmeFile({required this.githubRepo});
 
   @override
   List<Object> get props => [githubRepo];

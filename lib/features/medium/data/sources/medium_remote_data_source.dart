@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../../../core/core.dart';
 
@@ -13,20 +11,13 @@ abstract class MediumRemoteDataSource {
 }
 
 class MediumRemoteDataSourceImpl implements MediumRemoteDataSource {
-  final Client client;
+  final Dio client;
 
   MediumRemoteDataSourceImpl({required this.client});
 
   @override
   Future applyMediumItem(int value) async {
-    final body = {"value": value};
-    final response = await client.post(
-        Uri(
-          scheme: httpsScheme,
-          // host: baseUrl,
-          // path: mediumApplicationUrl,
-        ),
-        body: jsonEncode(body));
+    final response = await client.post("");
     if (response.statusCode == 200) {
       return response;
     }

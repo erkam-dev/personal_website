@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
 
@@ -13,11 +14,14 @@ class GithubRemoteDataSourceImpl implements GithubRemoteDataSource {
 
   @override
   Future getRawRepoFile(String filePath) async {
-    final response = await client.get(
-        Uri(scheme: httpsScheme, host: rawGithubHost, path: filePath)
-            .toString());
+    late Response response;
+    try {
+      response = await client.get(filePath);
+    } catch (e) {
+      debugPrint(e.toString());
+      throw ServerException();
+    }
     if (response.statusCode == 200) {
-      // return value should be markdown string
       return response.data;
     } else {
       throw ServerException();

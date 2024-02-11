@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_network/image_network.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:personal_website/features/features.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,14 +13,14 @@ class GithubReposSectionWidget extends StatelessWidget {
     return BlocBuilder(
       bloc: githubBloc,
       builder: (context, state) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
             onTap: () =>
                 launchUrl(Uri.parse('https://www.github.com/erkam-dev')),
             title: Text("Github Repos",
                 style: Theme.of(context).textTheme.titleLarge),
-            trailing: Icon(Icons.navigate_next_rounded),
+            trailing: const Icon(Icons.navigate_next_rounded),
           ).pad32(vertical: false),
           (state.runtimeType == GithubLoading)
               ? const Center(child: CircularProgressIndicator())
@@ -36,8 +35,10 @@ class GithubReposSectionWidget extends StatelessWidget {
                         context,
                         HeroDialogRoute(
                             fullscreenDialog: true,
-                            builder: (context) =>
-                                GithubRepoDetailsScreen(githubRepo: e)));
+                            builder: (context) => BlocProvider.value(
+                                value: githubBloc,
+                                child:
+                                    GithubRepoDetailsScreen(githubRepo: e))));
                     return Hero(
                       tag: e,
                       child: Card(
@@ -50,17 +51,14 @@ class GithubReposSectionWidget extends StatelessWidget {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .surfaceVariant,
-                                  child: ImageNetwork(
-                                    image: e.thumbnailUrl ?? "",
+                                  child: Image.network(
+                                    e.thumbnailUrl ?? "",
                                     width: 300,
                                     height: 175,
-                                    onTap: openRepoDetail,
                                   )),
                               ListTile(
                                 title: Text(
-                                  (e.repoName ?? "")
-                                      .replaceAll("-", " ")
-                                      .capitalizeEveryWordsFirstChar(),
+                                  (e.title ?? ""),
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                   maxLines: 1,
@@ -81,7 +79,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                   }).toList(),
                 ).sizedBox(height: 240),
         ],
-      ),
+      ).maxDesktopWidth(),
     );
   }
 }

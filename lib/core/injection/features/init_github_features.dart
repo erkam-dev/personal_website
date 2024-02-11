@@ -8,12 +8,12 @@ initGithubFeatures() {
       github: sl<Github>(),
       getRawRepoFileUsecase: sl<GetRawRepoFileUsecase>()));
   // Entities
-  sl.registerLazySingleton<Github>(() => Github(username: "", repos: []));
-  sl.registerLazySingleton<GithubRepo>(() => GithubRepo());
+  sl.registerLazySingleton<Github>(() => const Github(username: "", repos: []));
+  sl.registerLazySingleton<GithubRepo>(() => const GithubRepo());
   // Models
   sl.registerLazySingleton<GithubModel>(
-      () => GithubModel(username: "", repos: []));
-  sl.registerLazySingleton<GithubRepoModel>(() => GithubRepoModel());
+      () => const GithubModel(username: "", repos: []));
+  sl.registerLazySingleton<GithubRepoModel>(() => const GithubRepoModel());
   // Usecases
   sl.registerLazySingleton<GetRawRepoFileUsecase>(
       () => GetRawRepoFileUsecase(sl<GithubRepository>()));
