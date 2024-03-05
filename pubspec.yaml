@@ -24,7 +24,7 @@ dependencies:
   intl: ^0.19.0
   loop_page_view: ^1.2.5
   url_launcher: ^6.1.11
-  webviewx_plus: ^0.4.1
+  webviewx_plus: ^0.5.0
 
 dev_dependencies:
   flutter_test:

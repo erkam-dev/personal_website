@@ -27,6 +27,7 @@ class App extends StatelessWidget {
             dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
             scrollbars: false,
           ),
+          title: "Erkam Dev",
           themeMode: ThemeMode.light,
           theme: lightTheme(),
           darkTheme: darkTheme(),
