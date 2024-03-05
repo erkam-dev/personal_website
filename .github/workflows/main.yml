@@ -25,7 +25,7 @@ jobs:
         run: flutter build web --web-renderer html --release
 
       - name: Deploy to GitHub Pages
-      - run: |
+        run: |
           cd build/web
           git init
           git config --global user.email mehmeterkamhayirli@gmail.com
