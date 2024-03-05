@@ -10,7 +10,7 @@ class AboutMeWidget extends StatelessWidget {
     List<SocialIcon> icons = [
       SocialIcon(
         imagePath: "instagram",
-        redirectionUrl: "https://instagram.com/erkam_dev",
+        redirectionUrl: "https://instagram.com/erkamdev",
       ),
       SocialIcon(
         imagePath: "x",
@@ -18,11 +18,11 @@ class AboutMeWidget extends StatelessWidget {
       ),
       SocialIcon(
         imagePath: "youtube",
-        redirectionUrl: "https://youtube.com/@erkam_dev",
+        redirectionUrl: "https://youtube.com/@erkamdev",
       ),
       SocialIcon(
         imagePath: "linkedin",
-        redirectionUrl: "https://linkedin.com/in/erkam-dev",
+        redirectionUrl: "https://linkedin.com/in/erkamdev",
       ),
       SocialIcon(
         imagePath: "play",
@@ -31,7 +31,7 @@ class AboutMeWidget extends StatelessWidget {
       ),
       SocialIcon(
         imagePath: "figma",
-        redirectionUrl: "https://figma.com/@erkam_dev",
+        redirectionUrl: "https://figma.com/@erkamdev",
       ),
       SocialIcon(
         imagePath: "github",
@@ -39,7 +39,7 @@ class AboutMeWidget extends StatelessWidget {
       ),
       SocialIcon(
         imagePath: "medium",
-        redirectionUrl: "https://medium.com/@erkam_dev",
+        redirectionUrl: "https://medium.com/@erkamdev",
       ),
     ];
     return Column(
