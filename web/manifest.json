@@ -1,11 +1,11 @@
 {
-    "name": "personal_website",
-    "short_name": "personal_website",
+    "name": "Erkam Dev",
+    "short_name": "Erkam Dev",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Hi, I'm Erkam. I'm a Flutter Developer & UI Designer since 2021. Explore more things about me...",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,4 +1,3 @@
-
 name: Flutter Web
 on:
   push:
@@ -15,9 +14,17 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter config --enable-web
-      - run: flutter pub get
-      - run: flutter build web --release
+
+      - name: Enable Flutter Web
+        run: flutter config --enable-web
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web --web-renderer html --release
+
+      - name: Deploy to GitHub Pages
       - run: |
           cd build/web
           git init

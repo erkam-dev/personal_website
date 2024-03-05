@@ -34,12 +34,10 @@ class GithubBloc extends Bloc<GithubEvent, GithubState> {
       final failureOrValue = await getRawRepoFileUsecase(GetRawRepoFileParams(
           filePath:
               "https://cdn.jsdelivr.net/gh/${github.username}/${event.githubRepo.repoName}@${event.githubRepo.branch}/README.md"));
-      failureOrValue.fold(
-          (l) => emit(GithubInitial()),
-          (r) => {
-                readmeContent = r,
-                emit(GithubInitial()),
-              });
+      failureOrValue.fold((l) => emit(GithubInitial()), (r) {
+        readmeContent = r;
+        emit(GithubInitial());
+      });
       emit(GithubInitial());
     });
   }

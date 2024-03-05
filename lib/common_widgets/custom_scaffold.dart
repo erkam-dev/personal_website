@@ -66,6 +66,7 @@ class CustomScaffold extends StatelessWidget {
         Scaffold(
           appBar: appBar ??
               AppBar(
+                centerTitle: false,
                 automaticallyImplyLeading: false,
                 title: SizedBox(
                     child: (title ?? "").isEmpty && Navigator.canPop(context)
