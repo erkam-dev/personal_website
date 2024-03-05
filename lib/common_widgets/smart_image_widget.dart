@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/core/core.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class SmartImageWidget extends StatelessWidget {
   final String imagePath;
@@ -19,23 +17,24 @@ class SmartImageWidget extends StatelessWidget {
             height: height,
           )
         : imagePath.isNotEmpty
-            ? WebViewX(
-                width: width ?? 480,
-                height: height ?? 270,
-                initialSourceType: SourceType.html,
-                ignoreAllGestures: true,
-                initialContent: """
-    <html>
-      <head>
-        <style>
-          body::-webkit-scrollbar {
-            display: none;
-          }
-        </style>
-      </head>
-      <img src="$imagePath" style="width: 100%; height: auto;">
-    </html>""",
-              ).ignorePointer().scale(1.07)
+            ? Image.network(
+                imagePath,
+                fit: BoxFit.cover,
+                width: width,
+                height: height,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+              )
             : const SizedBox());
   }
 }
