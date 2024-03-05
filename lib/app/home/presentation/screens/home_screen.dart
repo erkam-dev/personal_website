@@ -44,8 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return CustomScaffold(
       body: PageView(
         pageSnapping: false,
-        onPageChanged: (value) => setState(() =>
-            {showLabel = value == 0, lastPage = value == pages.length - 1}),
+        onPageChanged: (value) => setState(() {
+          showLabel = value == 0;
+          lastPage = value == pages.length - 1;
+        }),
         controller: controller,
         scrollDirection: Axis.vertical,
         children: pages,
