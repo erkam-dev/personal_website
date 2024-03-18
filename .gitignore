@@ -47,4 +47,4 @@ app.*.map.json
 .env
 
 # Firebase Options
-/lib/firebase_options.dart
+lib/firebase_options.dart
