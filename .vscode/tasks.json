@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Deploy",
+            "type": "shell",
+            "command": "flutter pub get && flutter build web --web-renderer html --release && echo 'erkam.dev' > build/web/CNAME && git add -f build && git commit -m 'update' && git subtree push --prefix build/web origin gh-pages --force",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

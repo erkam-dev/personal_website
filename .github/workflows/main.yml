@@ -2,7 +2,7 @@ name: Flutter Web
 on:
   push:
     branches:
-      - main
+      - canceled_because_of_security_reasons
 jobs:
   build:
     name: Build Web
