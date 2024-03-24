@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:personal_website/core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -69,25 +70,31 @@ class CustomScaffold extends StatelessWidget {
                 centerTitle: false,
                 automaticallyImplyLeading: false,
                 title: SizedBox(
-                    child: (title ?? "").isEmpty && Navigator.canPop(context)
-                        ? TextButton.icon(
-                            icon: Icon(
-                              Icons.navigate_before_rounded,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            label: Text(
-                              "Back",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary),
-                            ),
-                            onPressed: () => context.popWhenPoppable(),
-                          ).customCard()
+                    child: (title ?? "").isEmpty && context.canPop()
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.navigate_before_rounded,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              Text(
+                                "Back",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                              ),
+                            ],
+                          )
+                            .pad4()
+                            .pad8(vertical: false)
+                            .inkwell(() => context.popWhenPoppable())
+                            .customCard()
                         : Text(title ?? "")),
                 actions: [
                   Text(
