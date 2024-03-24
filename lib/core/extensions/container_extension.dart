@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/lib.dart';
 
 extension ContainerExtension on Widget {
   SizedBox sizedBox({double? height, double? width}) =>
@@ -66,6 +65,6 @@ extension ContainerExtension on Widget {
         margin: margin,
         clipBehavior: clipBehavior,
         semanticContainer: semanticContainer,
-        child: blur != 0 ? blurBackgroundWithClip(blur: blur) : this,
+        child: this,
       );
 }

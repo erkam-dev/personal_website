@@ -9,14 +9,18 @@
                 "flutter pub get &&",
                 // build web with html renderer and release mode
                 "flutter build web --web-renderer html --release &&",
+                // create 404.html file
+                "dart run create_404.dart &&",
+                // create index files for each directory
+                "dart run create_index_files.dart &&",
                 // add CNAME file for custom domain
                 "echo 'erkam.dev' > build/web/CNAME &&",
                 // change directory to build/web
                 "cd build/web &&",
                 // initialize git repository
                 "git init &&",
-                // set remote origin to personal website repository
-                "git remote set-url origin https://github.com/erkam-dev/personal_website.git || git remote add origin https://github.com/erkam-dev/personal_website.git &&",
+                // set remote origin to personal website repository if not exists then add it
+                "git remote get-url origin > /dev/null 2>&1 || git remote add origin https://github.com/erkam-dev/personal_website.git &&",
                 // checkout to gh-pages branch
                 "git checkout -B gh-pages &&",
                 // add all files to git
