@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:personal_website/app/app.dart';
-import 'package:personal_website/app/portfolio/presentation/screens/decisionai_portfolio_screen.dart';
-import 'package:personal_website/app/portfolio/presentation/screens/tg_portfolio_screen.dart';
 import 'package:personal_website/core/core.dart';
 
 class PortfolioWidget extends StatelessWidget {
@@ -27,20 +26,13 @@ class PortfolioWidget extends StatelessWidget {
                 imagePath: "assets/images/thumbnails/tg_thumbnail.png",
                 title: "TeklifimGelsin",
                 description: "Personalized Financial Market Place & Assistant",
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TgPortfolioScreen())),
+                onTap: () => context.go("/portfolio/teklifimgelsin"),
               ),
               PortfolioItemWidget(
                 imagePath: "assets/images/thumbnails/decisionai_thumbnail.png",
                 title: "Decision AI",
                 description: "Making the decision-making process a breeze",
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const DecisionaiPortfolioScreen())),
+                onTap: () => context.go("/portfolio/decision-ai"),
               ),
             ],
           ),

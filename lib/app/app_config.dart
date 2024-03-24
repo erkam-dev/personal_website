@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_website/app/app.dart';
 import 'package:personal_website/core/core.dart';
 
 import '../features/features.dart';
@@ -21,7 +20,7 @@ class App extends StatelessWidget {
       ],
       child: ValueListenableBuilder(
         valueListenable: themeMode,
-        builder: (context, value, child) => MaterialApp(
+        builder: (context, value, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           scrollBehavior: const CupertinoScrollBehavior().copyWith(
             dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch},
@@ -31,7 +30,7 @@ class App extends StatelessWidget {
           themeMode: ThemeMode.light,
           theme: lightTheme(),
           darkTheme: darkTheme(),
-          home: const HomeScreen(),
+          routerConfig: goRouter,
         ),
       ),
     );

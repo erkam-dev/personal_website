@@ -35,7 +35,7 @@ class TgPortfolioScreen extends StatelessWidget {
           imagePath: "assets/images/highlights/tg/tg_hl_valuation.webp",
           title: "\$14 Million Valuation",
           description:
-              "Teklifimgelsin received \$14 million investment and became one of the largest financial marketplace startups.",
+              "Teklifimgelsin received \$950.000 investment with \$14 million valuation in the beginning of 2024 and became one of the largest financial marketplace startups.",
         ),
         HighlightsItemWidget(
           imagePath: "assets/images/highlights/tg/tg_hl_report.webp",

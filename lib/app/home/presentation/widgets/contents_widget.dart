@@ -89,49 +89,36 @@ class _ContentsWidgetState extends State<ContentsWidget>
               .headlineSmall!
               .copyWith(color: Colors.white),
         ),
-        Stack(
-          alignment: Alignment.center,
+        Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TabBar(
-                  controller: tabController,
-                  tabs: tabs
-                      .map((e) => Tab(
-                            text: e,
-                            iconMargin: context.edgeInsets(0),
-                            height: 30,
-                          ))
-                      .toList(),
-                  isScrollable: true,
-                  splashBorderRadius: context.borderRadius32(),
-                  onTap: (value) => setState(() => selectedIndex = value),
-                ).pad16(),
-                TabBarView(
-                        viewportFraction: 0.99,
-                        controller: tabController,
-                        children: tabViews
-                            .map((e) => SingleChildScrollView(
-                                  child: Wrap(
-                                    runAlignment: WrapAlignment.center,
-                                    alignment: WrapAlignment.center,
-                                    children: e,
-                                  ),
-                                ))
-                            .toList())
-                    .sizedBox(height: MediaQuery.sizeOf(context).height - 400)
-                    .maxDesktopWidth(),
-              ],
-            ),
-            Positioned(
-              bottom: 20,
-              child: FilledButton.icon(
-                onPressed: () {},
-                label: const Text("See More"),
-                icon: const Icon(Icons.view_carousel_rounded),
-              ),
-            )
+            TabBar(
+              controller: tabController,
+              tabs: tabs
+                  .map((e) => Tab(
+                        text: e,
+                        iconMargin: context.edgeInsets(0),
+                        height: 30,
+                      ))
+                  .toList(),
+              isScrollable: true,
+              splashBorderRadius: context.borderRadius32(),
+              onTap: (value) => setState(() => selectedIndex = value),
+            ).pad16(),
+            TabBarView(
+                    viewportFraction: 0.99,
+                    controller: tabController,
+                    children: tabViews
+                        .map((e) => SingleChildScrollView(
+                              child: Wrap(
+                                runAlignment: WrapAlignment.center,
+                                alignment: WrapAlignment.center,
+                                children: e,
+                              ),
+                            ))
+                        .toList())
+                .sizedBox(height: MediaQuery.sizeOf(context).height - 400)
+                .maxDesktopWidth(),
           ],
         ).customCard(borderRadius: 32).maxDesktopWidth().pad16(vertical: false),
       ],
