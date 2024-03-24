@@ -3,6 +3,13 @@ import 'package:go_router/go_router.dart';
 import '../../lib.dart';
 
 final goRouter = GoRouter(
+  redirect: (context, state) {
+    final path = state.uri.queryParameters['path'];
+    if (path != null && path.isNotEmpty) {
+      return '/$path';
+    }
+    return null;
+  },
   routes: [
     GoRoute(
       path: '/',
