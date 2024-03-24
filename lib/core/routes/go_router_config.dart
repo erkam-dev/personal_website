@@ -20,6 +20,10 @@ final goRouter = GoRouter(
           path: 'portfolio/ticktodo',
           builder: (context, state) => const TickTodoPortfolioScreen(),
         ),
+        GoRoute(
+          path: '*',
+          builder: (context, state) => const NotFoundPage(),
+        ),
       ],
     ),
   ],
