@@ -16,7 +16,9 @@
                 "git commit -m 'update' &&",
                 "git push -u origin gh-pages -f &&",
                 "cd ../.. &&",
-                "rm -rf build"
+                // "rm -rf build" // For Unix/Linux
+                "Remove-Item -Recurse -Force build" // For Windows
+
             ],
             "group": {
                 "kind": "build",
