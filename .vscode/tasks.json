@@ -5,12 +5,12 @@
             "label": "Build and Deploy",
             "type": "shell",
             "command": [
-                "flutter pub get",
-                "flutter build web --web-renderer html --release",
-                "echo 'erkam.dev' > build/web/CNAME",
-                "git checkout gh-pages",
-                "git add -f build",
-                "git commit -m 'update'",
+                "flutter pub get &&",
+                "flutter build web --web-renderer html --release &&",
+                "echo 'erkam.dev' > build/web/CNAME &&",
+                "git checkout gh-pages &&",
+                "git add -f build &&",
+                "git commit -m 'update' &&",
                 "git push origin gh-pages -f"
             ],
             "group": {
