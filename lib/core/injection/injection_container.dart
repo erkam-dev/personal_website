@@ -1,5 +1,5 @@
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get_it/get_it.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import '../core.dart';
 
@@ -11,7 +11,7 @@ Future<void> init() async {
   initDioPlugin();
   await initHivePlugin();
   await initFirebasePlugin();
-  setUrlStrategy(PathUrlStrategy());
+  setPathUrlStrategy();
 
   // Features
   initFigmaFeatures();

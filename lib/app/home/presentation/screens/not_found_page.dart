@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../lib.dart';
 
@@ -8,6 +9,16 @@ class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.home_outlined),
+            const SizedBox(width: 8),
+            Text('Take Me Home', style: Theme.of(context).textTheme.titleSmall),
+          ],
+        ).inkwell(() => context.go("/")).pad4().customCard(),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

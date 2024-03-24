@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:personal_website/core/core.dart';
 
 extension ColorExtension on BuildContext {
   LinearGradient linearGradient(List<Color> colors) => LinearGradient(
@@ -14,12 +11,12 @@ extension ColorFilterMaskExtension on Widget {
         colorFilter: ColorFilter.mode(color, blendMode ?? BlendMode.srcIn),
         child: this,
       );
-  BackdropFilter blurBackground([double? blur]) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blur ?? 8, sigmaY: blur ?? 8),
-        child: this,
-      );
-  Widget blurBackgroundWithClip({double? blur, double? borderRadius}) =>
-      blurBackground(blur).roundBorder(borderRadius ?? 0);
+  // BackdropFilter blurBackground([double? blur]) => BackdropFilter(
+  //       filter: ImageFilter.blur(sigmaX: blur ?? 8, sigmaY: blur ?? 8),
+  //       child: this,
+  //     );
+  // Widget blurBackgroundWithClip({double? blur, double? borderRadius}) =>
+  //     blurBackground(blur).roundBorder(borderRadius ?? 0);
   ShaderMask linearGradient(List<Color> colors,
           {Alignment? begin, Alignment? end}) =>
       ShaderMask(

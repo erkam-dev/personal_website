@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:personal_website/core/routes/route_names.dart';
 
 import '../../lib.dart';
 
@@ -10,28 +11,17 @@ final goRouter = GoRouter(
     }
     return null;
   },
+  errorBuilder: (context, state) => const NotFoundPage(),
   routes: [
     GoRoute(
       path: '/',
       builder: (context, state) => const HomeScreen(),
-      routes: [
-        GoRoute(
-          path: 'portfolio/decision-ai',
-          builder: (context, state) => const DecisionaiPortfolioScreen(),
-        ),
-        GoRoute(
-          path: 'portfolio/teklifimgelsin',
-          builder: (context, state) => const TgPortfolioScreen(),
-        ),
-        GoRoute(
-          path: 'portfolio/ticktodo',
-          builder: (context, state) => const TickTodoPortfolioScreen(),
-        ),
-        GoRoute(
-          path: '*',
-          builder: (context, state) => const NotFoundPage(),
-        ),
-      ],
+      routes: routeMap.entries
+          .map((entry) => GoRoute(
+                path: entry.key,
+                builder: (context, state) => entry.value,
+              ))
+          .toList(),
     ),
   ],
 );
