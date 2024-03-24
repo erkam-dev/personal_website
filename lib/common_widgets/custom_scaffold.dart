@@ -92,8 +92,8 @@ class CustomScaffold extends StatelessWidget {
                             ],
                           )
                             .pad4()
-                            .pad8(vertical: false)
                             .inkwell(() => context.popWhenPoppable())
+                            .pad8(vertical: false)
                             .customCard()
                         : Text(title ?? "")),
                 actions: [
