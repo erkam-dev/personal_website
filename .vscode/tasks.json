@@ -5,20 +5,31 @@
             "label": "Build and Deploy",
             "type": "shell",
             "command": [
+                // get flutter packages
                 "flutter pub get &&",
+                // build web with html renderer and release mode
                 "flutter build web --web-renderer html --release &&",
+                // add CNAME file for custom domain
                 "echo 'erkam.dev' > build/web/CNAME &&",
+                // change directory to build/web
                 "cd build/web &&",
+                // initialize git repository
                 "git init &&",
-                "git remote add origin https://github.com/erkam-dev/personal_website.git &&",
-                "git checkout -b gh-pages &&",
+                // set remote origin to personal website repository
+                "git remote set-url origin https://github.com/erkam-dev/personal_website.git || git remote add origin https://github.com/erkam-dev/personal_website.git &&",
+                // checkout to gh-pages branch
+                "git checkout -B gh-pages &&",
+                // add all files to git
                 "git add . &&",
+                // commit changes
                 "git commit -m 'update' &&",
+                // push changes to gh-pages branch
                 "git push -u origin gh-pages -f &&",
+                // change directory to root
                 "cd ../.. &&",
+                // remove build directory
                 // "rm -rf build" // For Unix/Linux
                 "Remove-Item -Recurse -Force build" // For Windows
-
             ],
             "group": {
                 "kind": "build",
