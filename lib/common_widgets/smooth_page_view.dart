@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:personal_website/core/core.dart';
 
 class SmoothPageView extends StatefulWidget {
   final List<Widget> children;
@@ -37,7 +36,7 @@ class SmoothPageViewState extends State<SmoothPageView> {
     throttle(sink.stream).listen((offset) {
       pager.animateTo(
         offset,
-        duration: context.durationMilliseconds300(),
+        duration: Duration(milliseconds: 300),
         curve: Curves.easeOutCubic,
       );
     });

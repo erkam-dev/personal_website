@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:personal_website/core/routes/route_names.dart';
 
 import '../../lib.dart';
 

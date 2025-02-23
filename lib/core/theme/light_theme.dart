@@ -42,6 +42,7 @@ ThemeData lightTheme() {
           bodyLarge: GoogleFonts.montserrat(fontSize: 20),
           bodyMedium: GoogleFonts.montserrat(fontSize: 16),
           bodySmall: GoogleFonts.montserrat(fontSize: 12)),
+      // ignore: deprecated_member_use
       splashColor: Colors.deepPurple.withOpacity(0.3),
       tabBarTheme: TabBarTheme(
         dividerHeight: 0,

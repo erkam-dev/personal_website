@@ -8,21 +8,27 @@
             "name": "personal_website",
             "request": "launch",
             "type": "dart",
-            "args": ["--web-renderer=html"]
+            "args": [
+                // "--web-renderer=html"
+            ]
         },
         {
             "name": "personal_website (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": ["--web-renderer=html"]
+            "args": [
+                // "--web-renderer=html"
+            ]
         },
         {
             "name": "personal_website (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": ["--web-renderer=html"]
+            "args": [
+                // "--web-renderer=html"
+            ]
         }
     ]
 }

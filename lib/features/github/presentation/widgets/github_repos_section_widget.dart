@@ -50,7 +50,7 @@ class GithubReposSectionWidget extends StatelessWidget {
                               Card(
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .surfaceVariant,
+                                      .surfaceContainerHighest,
                                   child: Image.network(
                                     e.thumbnailUrl ?? "",
                                     width: 300,

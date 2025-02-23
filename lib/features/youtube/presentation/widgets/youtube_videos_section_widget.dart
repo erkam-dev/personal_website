@@ -56,7 +56,7 @@ class YoutubeVideosSectionWidget extends StatelessWidget {
                                 Card(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .surfaceVariant,
+                                        .surfaceContainerHighest,
                                     child: SizedBox(
                                       height: 150,
                                       child: Image.network(
